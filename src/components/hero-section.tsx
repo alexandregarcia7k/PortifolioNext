@@ -3,7 +3,7 @@ import Link from "next/link";
 import TrueFocus from './TrueFocus';
 import Image from "next/image";
 import { HeroHeader } from "./header";
-import NeuralBackground from "@/components/neural-background";
+
 import { TextEffect } from "./ui/text-effect";
 import { GlowCard } from "./spotlight-card";
 import { Github, Linkedin, Mail } from "lucide-react";
@@ -12,6 +12,7 @@ import ShinyText from "./ShinyText";
 import FadeContent from "./FadeContent";
 import { HoverButton } from "@/components/ui/hover-button";
 import LogoLoop from './LogoLoop';
+import NeuralBackground from "@/components/neural-background";
 import { 
   SiReact, 
   SiNextdotjs, 
@@ -28,7 +29,8 @@ import {
   SiPostgresql, 
   SiPython, 
   SiDocker, 
-  SiPrisma 
+  SiPrisma,
+  SiNodedotjs 
 } from 'react-icons/si';
 
 const techLogos = [
@@ -48,6 +50,7 @@ const techLogos = [
     { node: <SiPython className="hover:text-[#3776AB] transition-all duration-150 ease-out" />, title: "Python" },
     { node: <SiDocker className="hover:text-[#2496ED] transition-all duration-150 ease-out" />, title: "Docker" },
     { node: <SiPrisma className="hover:text-[#2D3748] transition-all duration-150 ease-out" />, title: "Prisma" },
+    { node: <SiNodedotjs className="hover:text-[#339933] transition-all duration-150 ease-out" />, title: "Node.js" },
 ];
 
 export default function HeroSection() {
@@ -55,10 +58,10 @@ export default function HeroSection() {
     <>
       <HeroHeader />
       <main className="overflow-x-hidden">
-        <section className="relative min-h-screen">
+        <section className="relative">
           <NeuralBackground />
-          <div className="pb-24 pt-28 sm:pt-32 md:pb-32 lg:pb-56 lg:pt-44">
-            <div className="relative mx-auto flex max-w-6xl flex-col px-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="pb-8 pt-28 sm:pt-32 md:pb-12 lg:pb-16 lg:pt-44">
+            <div className="relative mx-auto flex max-w-6xl 2xl:max-w-7xl flex-col px-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left relative z-10">
                 <TextEffect
                   preset="fade-in-blur"
@@ -148,6 +151,7 @@ export default function HeroSection() {
                         src="/fotoportifolio.png"
                         alt="Foto de Alexandre Garcia desenvolvedor front-end"
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 340px"
                         className="object-cover"
                         priority
                       />
@@ -199,7 +203,7 @@ export default function HeroSection() {
               </FadeContent>
             </div>
 
-            <div className="mx-auto max-w-[70rem] px-4 sm:px-6">
+            <div className="mx-auto max-w-[70rem] 2xl:max-w-[80rem] px-4 sm:px-6">
             <FadeContent
                 blur={true}
                 duration={1000}
@@ -232,8 +236,6 @@ export default function HeroSection() {
                   gap={40}
                   pauseOnHover={false}
                   scaleOnHover
-                  fadeOut = {true}
-                  fadeOutColor="black"
                   ariaLabel="Stack de Tecnologias(Tecnologias dominadas)"
                   showBorder
                   borderColor="#a855f7"
@@ -242,6 +244,7 @@ export default function HeroSection() {
               </FadeContent>
             </div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-black pointer-events-none z-10" />
         </section>
       </main>
     </>

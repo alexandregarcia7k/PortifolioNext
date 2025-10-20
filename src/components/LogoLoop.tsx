@@ -382,28 +382,6 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {fadeOut && (
-            <>
-              <div
-                aria-hidden
-                className={cx(
-                  'pointer-events-none absolute inset-y-0 left-0 z-[1]',
-                  'w-[clamp(24px,8%,120px)]',
-                  'radius-md',
-                  'bg-[linear-gradient(to_right,var(--logoloop-fadeColor,var(--logoloop-fadeColorAuto))_0%,rgba(0,0,0,0)_100%)]'
-                )}
-              />
-              <div
-                aria-hidden
-                className={cx(
-                  'pointer-events-none absolute inset-y-0 right-0 z-[1]',
-                  'w-[clamp(24px,8%,120px)]',
-                  'bg-[linear-gradient(to_left,var(--logoloop-fadeColor,var(--logoloop-fadeColorAuto))_0%,rgba(0,0,0,0)_100%)]'
-                )}
-              />
-            </>
-          )}
-
           <div
             className={cx('flex w-max will-change-transform select-none', 'motion-reduce:transform-none')}
             ref={trackRef}
@@ -415,28 +393,28 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         {showBorder && (
           <>
             <span
-              className="absolute w-4 h-4 border-[3px] rounded-[3px] top-[-10px] left-[-10px] border-r-0 border-b-0"
+              className="absolute w-4 h-4 border-[3px] rounded-[3px] top-0 left-0 border-r-0 border-b-0"
               style={{
                 borderColor,
                 filter: `drop-shadow(0 0 4px ${borderColor})`
               }}
             />
             <span
-              className="absolute w-4 h-4 border-[3px] rounded-[3px] top-[-10px] right-[-10px] border-l-0 border-b-0"
+              className="absolute w-4 h-4 border-[3px] rounded-[3px] top-0 right-0 border-l-0 border-b-0"
               style={{
                 borderColor,
                 filter: `drop-shadow(0 0 4px ${borderColor})`
               }}
             />
             <span
-              className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-[-10px] left-[-10px] border-r-0 border-t-0"
+              className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-0 left-0 border-r-0 border-t-0"
               style={{
                 borderColor,
                 filter: `drop-shadow(0 0 4px ${borderColor})`
               }}
             />
             <span
-              className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-[-10px] right-[-10px] border-l-0 border-t-0"
+              className="absolute w-4 h-4 border-[3px] rounded-[3px] bottom-0 right-0 border-l-0 border-t-0"
               style={{
                 borderColor,
                 filter: `drop-shadow(0 0 4px ${borderColor})`
