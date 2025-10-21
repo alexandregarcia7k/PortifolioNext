@@ -121,12 +121,14 @@ const useAnimationLoop = (
   targetVelocity: number,
   seqWidth: number,
   isHovered: boolean,
-  pauseOnHover: boolean
+  pauseOnHover: boolean,
+  isInViewport: boolean
 ) => {
   const rafRef = useRef<number | null>(null);
   const lastTimestampRef = useRef<number | null>(null);
   const offsetRef = useRef(0);
   const velocityRef = useRef(0);
+  const frameCountRef = useRef(0);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -150,6 +152,19 @@ const useAnimationLoop = (
     }
 
     const animate = (timestamp: number) => {
+      // Pausa animação se fora do viewport
+      if (!isInViewport) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      // Reduz FPS para 30: atualiza a cada 2 frames
+      frameCountRef.current++;
+      if (frameCountRef.current % 2 !== 0) {
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       if (lastTimestampRef.current === null) {
         lastTimestampRef.current = timestamp;
       }
@@ -183,7 +198,7 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, isHovered, pauseOnHover]);
+  }, [targetVelocity, seqWidth, isHovered, pauseOnHover, isInViewport]);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -211,6 +226,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     const [seqWidth, setSeqWidth] = useState<number>(0);
     const [copyCount, setCopyCount] = useState<number>(ANIMATION_CONFIG.MIN_COPIES);
     const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [isInViewport, setIsInViewport] = useState<boolean>(false);
 
     const targetVelocity = useMemo(() => {
       const magnitude = Math.abs(speed);
@@ -234,7 +250,23 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
     useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight]);
 
-    useAnimationLoop(trackRef, targetVelocity, seqWidth, isHovered, pauseOnHover);
+    // Detecta quando está no viewport
+    useEffect(() => {
+      const element = containerRef.current;
+      if (!element) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsInViewport(entry.isIntersecting);
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(element);
+      return () => observer.disconnect();
+    }, []);
+
+    useAnimationLoop(trackRef, targetVelocity, seqWidth, isHovered, pauseOnHover, isInViewport);
 
     const cssVariables = useMemo(
       () =>

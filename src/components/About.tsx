@@ -1,5 +1,8 @@
+"use client"
 import { Badge } from "@/components/ui/badge";
-import ScrollFloat from "./ScrollFloat";
+import { CodeBlockComponent } from "./Codeblock";
+
+
 
 function About() {
   return (
@@ -8,18 +11,14 @@ function About() {
       <div className="relative w-full py-8 lg:py-16">
         <div className="mx-auto max-w-6xl 2xl:max-w-7xl px-6">
           <div className="flex flex-col items-center justify-center mb-16">
-            <ScrollFloat
-              animationDuration={1}
-              ease='back.inOut(2)'
-              scrollStart='center bottom+=50%'
-              scrollEnd='bottom bottom-=40%'
-              stagger={0.03}
-            >
+            <h2 className="text-[clamp(1.6rem,4vw,3rem)] font-bold text-white">
               Sobre Mim
-            </ScrollFloat>
+            </h2>
           </div>
           <div className="flex flex-col-reverse lg:flex-row gap-10 lg:gap-16 items-center">
-            <div className="bg-zinc-900/50 rounded-lg w-full aspect-video flex-1"></div>
+            <div className="rounded-lg w-full aspect-video flex-1">
+            <CodeBlockComponent />
+            </div>
             <div className="flex gap-6 flex-col flex-1">
               <div>
                 <Badge className="bg-violet-500/10 text-violet-400 border-violet-500/20">Desenvolvedor</Badge>
@@ -37,7 +36,7 @@ function About() {
                   <p>
                     Tenho experiência no desenvolvimento de aplicações web completas, desde landing pages otimizadas 
                     para conversão até sistemas escaláveis e projetos full stack.  trabalho com <span className="font-semibold text-violet-400">React</span>, 
-                    <span className="font-semibold text-violet-400">Next.js</span>, <span className="font-semibold text-violet-400">Vue</span>, <span className="font-semibold text-violet-400">Nuxt</span>, <span className="font-semibold text-violet-400">JavaScript</span>, <span className="font-semibold text-violet-400">TypeScript</span>, <span className="font-semibold text-violet-400">HTML</span> e <span className="font-semibold text-violet-400">CSS</span>. Para <span className="font-semibold text-violet-400">Back-end</span>, utilizo <span className="font-semibold text-violet-400">Node.js</span> e princípios 
+                    <span className="font-semibold text-violet-400"> Next.js</span>, <span className="font-semibold text-violet-400">Vue</span>, <span className="font-semibold text-violet-400">Nuxt</span>, <span className="font-semibold text-violet-400">JavaScript</span>, <span className="font-semibold text-violet-400">TypeScript</span>, <span className="font-semibold text-violet-400">HTML</span> e <span className="font-semibold text-violet-400">CSS</span>. Para <span className="font-semibold text-violet-400">Back-end</span>, utilizo <span className="font-semibold text-violet-400">Node.js</span> e princípios 
                     de arquitetura limpa para garantir organização, segurança e manutenção do código.
                   </p>
                   <p>

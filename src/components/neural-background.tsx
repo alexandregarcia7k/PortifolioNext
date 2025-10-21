@@ -229,7 +229,7 @@ type CPPNShaderMaterialType = THREE.ShaderMaterial & {
 };
 
 // ===================== SHADER PLANE =====================
-function ShaderPlane() {
+function ShaderPlane({ isVisible }: { isVisible: boolean }) {
   const meshRef = useRef<THREE.Mesh>(null!);
   const materialRef = useRef<CPPNShaderMaterialType>(null!);
   const frameCount = useRef(0);
@@ -261,12 +261,11 @@ function ShaderPlane() {
   }, []);
 
   useFrame((state) => {
-    if (!materialRef.current || !isTabVisible.current) return;
+    if (!materialRef.current || !isTabVisible.current || !isVisible) return;
     
-    // Atualiza apenas a cada 2 frames em dispositivos móveis
+    // Reduz FPS para 30: atualiza a cada 2 frames (60 FPS / 2 = 30 FPS)
     frameCount.current++;
-    const isMobile = window.innerWidth < 768;
-    if (isMobile && frameCount.current % 2 !== 0) return;
+    if (frameCount.current % 2 !== 0) return;
     
     // Animação acelerada nos primeiros 3 segundos, depois normal
     const elapsed = state.clock.elapsedTime;
@@ -325,6 +324,7 @@ function ShaderPlane() {
 export default function NeuralBackground() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isInViewport, setIsInViewport] = useState(false);
   const [shouldRenderShader, setShouldRenderShader] = useState(true);
   
   // Detecta se é dispositivo móvel ou tela pequena
@@ -348,6 +348,22 @@ export default function NeuralBackground() {
       setIsVisible(true);
     }
   }, [shouldRenderShader]);
+
+  // Detecta quando está no viewport para pausar animação
+  useEffect(() => {
+    const element = canvasRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInViewport(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
   
   // Ajusta DPR baseado no dispositivo
   const optimizedDPR = useMemo(() => {
@@ -394,7 +410,7 @@ export default function NeuralBackground() {
             performance={{ min: 0.5 }}
             frameloop="always"
           >
-            <ShaderPlane />
+            <ShaderPlane isVisible={isInViewport} />
           </Canvas>
         )}
       </div>

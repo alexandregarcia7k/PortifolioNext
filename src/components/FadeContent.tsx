@@ -24,6 +24,7 @@ const FadeContent: React.FC<FadeContentProps> = ({
   className = ''
 }) => {
   const [inView, setInView] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -35,7 +36,12 @@ const FadeContent: React.FC<FadeContentProps> = ({
         if (entry.isIntersecting) {
           observer.unobserve(element);
           setTimeout(() => {
+            setIsAnimating(true);
             setInView(true);
+            // Remove will-change após animação terminar
+            setTimeout(() => {
+              setIsAnimating(false);
+            }, duration);
           }, delay);
         }
       },
@@ -45,7 +51,7 @@ const FadeContent: React.FC<FadeContentProps> = ({
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, [threshold, delay]);
+  }, [threshold, delay, duration]);
 
   return (
     <div
@@ -54,7 +60,8 @@ const FadeContent: React.FC<FadeContentProps> = ({
       style={{
         opacity: inView ? 1 : initialOpacity,
         transition: `opacity ${duration}ms ${easing}, filter ${duration}ms ${easing}`,
-        filter: blur ? (inView ? 'blur(0px)' : 'blur(10px)') : 'none'
+        filter: blur ? (inView ? 'blur(0px)' : 'blur(5px)') : 'none',
+        willChange: isAnimating ? 'opacity, filter' : 'auto'
       }}
     >
       {children}
