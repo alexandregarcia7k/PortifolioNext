@@ -15,6 +15,7 @@ const customNavItems = [
 
 const Customized = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     const sections = [
@@ -38,6 +39,14 @@ const Customized = () => {
           }
         }
       }
+
+      const footer = document.querySelector('footer');
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const footerCenter = footerRect.top + footerRect.height / 2;
+        setIsVisible(footerCenter < 0 || footerCenter > viewportHeight);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -47,7 +56,11 @@ const Customized = () => {
   }, []);
 
   return (
-    <nav role="navigation" aria-label="Navegação principal mobile">
+    <nav 
+      role="navigation" 
+      aria-label="Navegação principal mobile"
+      className={`transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+    >
       <LimelightNav 
         className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl" 
         items={customNavItems} 
