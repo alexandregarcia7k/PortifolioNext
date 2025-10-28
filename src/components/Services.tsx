@@ -88,7 +88,7 @@ const Services = () => {
           <CarouselContent className="-ml-4" role="list">
             <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
               <article>
-                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Landing Pages">
+                <a href="#contato" className="group flex flex-col h-[530px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Landing Pages">
                   <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
@@ -118,7 +118,7 @@ const Services = () => {
 
             <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
               <article>
-                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Plataformas de E-commerce">
+                <a href="#contato" className="group flex flex-col h-[530px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Plataformas de E-commerce">
                   <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
@@ -148,7 +148,7 @@ const Services = () => {
 
             <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
               <article>
-                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Dashboard Analytics">
+                <a href="#contato" className="group flex flex-col h-[530px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Dashboard Analytics">
                   <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
@@ -178,7 +178,7 @@ const Services = () => {
 
             <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
               <article>
-                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Blogs">
+                <a href="#contato" className="group flex flex-col h-[530px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Blogs">
                   <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
@@ -208,7 +208,7 @@ const Services = () => {
 
             <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
               <article>
-                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Aplicativos, Sistemas e Softwares">
+                <a href="#contato" className="group flex flex-col h-[530px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Aplicativos, Sistemas e Softwares">
                   <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">

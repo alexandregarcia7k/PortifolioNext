@@ -71,10 +71,8 @@ export default function Contact() {
                 required
               />
             </div>
-            <HoverButton className="w-full rounded-sm">
-              <button type="submit" className="w-full">
-                Enviar Mensagem
-              </button>
+            <HoverButton className="w-full rounded-sm" onClick={(e) => { e.preventDefault(); /* Handle form submission */ }}>
+              <span className="w-full">Enviar Mensagem</span>
             </HoverButton>
           </form>
         </ContactCard>
