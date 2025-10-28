@@ -30,22 +30,23 @@ const Services = () => {
     };
   }, [carouselApi]);
   return (
-    <section className="w-full py-4 lg:py-8 bg-black relative px-6">
+    <section id="servicos" className="w-full py-4 lg:py-8 bg-black relative px-6" aria-labelledby="services-heading">
       <div className="container mx-auto flex flex-col gap-16 lg:px-16">
-        <div className="flex flex-col justify-between md:flex-row md:items-end">
+        <header className="flex flex-col justify-between md:flex-row md:items-end">
           <div>
-            <h2 className="mb-3 text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6">
-              Services
+            <h2 id="services-heading" className="mb-3 text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6">
+              Serviços
             </h2>
             <a
-              href="https://www.shadcnblocks.com"
-              className="group flex items-center gap-1 text-sm font-medium md:text-base lg:text-lg"
+              href="#contato"
+              className="group flex items-center gap-1 text-sm font-medium md:text-base lg:text-lg focus:outline-none focus:ring-2 focus:ring-primary rounded"
+              aria-label="Agendar uma demonstração dos serviços"
             >
-              Book a demo
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1" />
+              Agendar demonstração
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </a>
           </div>
-          <div className="mt-8 md:mt-0 flex shrink-0 items-center justify-start gap-2">
+          <nav className="mt-8 md:mt-0 flex shrink-0 items-center justify-start gap-2" aria-label="Navegação do carrossel de serviços">
             <Button
               size="icon"
               variant="outline"
@@ -54,8 +55,9 @@ const Services = () => {
               }}
               disabled={!canScrollPrev}
               className="disabled:pointer-events-auto"
+              aria-label="Ver serviço anterior"
             >
-              <ArrowLeft className="size-5" />
+              <ArrowLeft className="size-5" aria-hidden="true" />
             </Button>
             <Button
               size="icon"
@@ -65,11 +67,12 @@ const Services = () => {
               }}
               disabled={!canScrollNext}
               className="disabled:pointer-events-auto"
+              aria-label="Ver próximo serviço"
             >
-              <ArrowRight className="size-5" />
+              <ArrowRight className="size-5" aria-hidden="true" />
             </Button>
-          </div>
-        </div>
+          </nav>
+        </header>
         <Carousel
           setApi={setCarouselApi}
           opts={{
@@ -80,146 +83,157 @@ const Services = () => {
               },
             },
           }}
+          aria-label="Carrossel de serviços oferecidos"
         >
-          <CarouselContent className="-ml-4">
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <a href="#" className="group flex flex-col h-[500px]">
-                <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
-                  <div className="flex-1">
-                    <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
-                      <Image
-                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
-                        alt="Build Modern UIs"
-                        fill
-                        className="object-cover object-center"
-                      />
+          <CarouselContent className="-ml-4" role="list">
+            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
+              <article>
+                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Landing Pages">
+                  <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
+                    <div className="flex-1">
+                      <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
+                        <Image
+                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          alt="Exemplo de Landing Page moderna e responsiva"
+                          fill
+                          className="object-cover object-center"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="flex flex-col flex-grow">
-                  <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
-                    Landing Pages
-                  </h3>
-                  <div className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
-                    Desenvolvimento de LandingPages de alta performance, otimizadas para conversão e engajamento, utilizando as melhores práticas de design e experiencia do usuario.
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
+                      Landing Pages
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
+                      Desenvolvimento de Landing Pages de alta performance, otimizadas para conversão e engajamento, utilizando as melhores práticas de design e experiência do usuário.
+                    </p>
+                    <span className="flex items-center text-sm mt-auto">
+                      Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
                   </div>
-                  <div className="flex items-center text-sm mt-auto">
-                    Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </a>
+                </a>
+              </article>
             </CarouselItem>
 
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <a href="#" className="group flex flex-col h-[500px]">
-                <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
-                  <div className="flex-1">
-                    <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
-                      <Image
-                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
-                        alt="Computer Vision Technology"
-                        fill
-                        className="object-cover object-center"
-                      />
+            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
+              <article>
+                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Plataformas de E-commerce">
+                  <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
+                    <div className="flex-1">
+                      <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
+                        <Image
+                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          alt="Exemplo de plataforma de e-commerce moderna"
+                          fill
+                          className="object-cover object-center"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="flex flex-col flex-grow">
-                  <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
-                    Plataformas de E-commerce
-                  </h3>
-                  <div className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
-                    Plataformas de E-commerce personalizadas, escaláveis e seguras, projetadas para oferecer uma experiência de compra excepcional e impulsionar o crescimento dos negócios online.
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
+                      Plataformas de E-commerce
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
+                      Plataformas de E-commerce personalizadas, escaláveis e seguras, projetadas para oferecer uma experiência de compra excepcional e impulsionar o crescimento dos negócios online.
+                    </p>
+                    <span className="flex items-center text-sm mt-auto">
+                      Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
                   </div>
-                  <div className="flex items-center text-sm mt-auto">
-                    Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </a>
+                </a>
+              </article>
             </CarouselItem>
 
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <a href="#" className="group flex flex-col h-[500px]">
-                <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
-                  <div className="flex-1">
-                    <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
-                      <Image
-                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
-                        alt="Machine Learning Automation"
-                        fill
-                        className="object-cover object-center"
-                      />
+            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
+              <article>
+                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Dashboard Analytics">
+                  <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
+                    <div className="flex-1">
+                      <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
+                        <Image
+                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          alt="Exemplo de dashboard analytics com gráficos e métricas"
+                          fill
+                          className="object-cover object-center"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="flex flex-col flex-grow">
-                  <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
-                    Dashboard Analytics
-                  </h3>
-                  <div className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
-                    Soluções de Dashboard Analytics que fornecem insights acionáveis por meio de visualizações de dados interativas, ajudando as empresas a monitorar o desempenho e tomar decisões informadas.
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
+                      Dashboard Analytics
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
+                      Soluções de Dashboard Analytics que fornecem insights acionáveis por meio de visualizações de dados interativas, ajudando as empresas a monitorar o desempenho e tomar decisões informadas.
+                    </p>
+                    <span className="flex items-center text-sm mt-auto">
+                      Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
                   </div>
-                  <div className="flex items-center text-sm mt-auto">
-                    Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </a>
+                </a>
+              </article>
             </CarouselItem>
 
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <a href="#" className="group flex flex-col h-[500px]">
-                <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
-                  <div className="flex-1">
-                    <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
-                      <Image
-                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
-                        alt="Predictive Analytics"
-                        fill
-                        className="object-cover object-center"
-                      />
+            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
+              <article>
+                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Blogs">
+                  <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
+                    <div className="flex-1">
+                      <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
+                        <Image
+                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          alt="Exemplo de blog moderno e otimizado"
+                          fill
+                          className="object-cover object-center"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="flex flex-col flex-grow">
-                  <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
-                    Blogs
-                  </h3>
-                  <div className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
-                    Criação de Blogs personalizados e otimizados para SEO, projetados para engajar leitores e aumentar a visibilidade online por meio de conteúdo relevante e atraente.
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
+                      Blogs
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
+                      Criação de Blogs personalizados e otimizados para SEO, projetados para engajar leitores e aumentar a visibilidade online por meio de conteúdo relevante e atraente.
+                    </p>
+                    <span className="flex items-center text-sm mt-auto">
+                      Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
                   </div>
-                  <div className="flex items-center text-sm mt-auto">
-                    Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </a>
+                </a>
+              </article>
             </CarouselItem>
 
-            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3">
-              <a href="#" className="group flex flex-col h-[500px]">
-                <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
-                  <div className="flex-1">
-                    <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
-                      <Image
-                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
-                        alt="Neural Network Architecture"
-                        fill
-                        className="object-cover object-center"
-                      />
+            <CarouselItem className="pl-4 md:basis-1/2 lg:basis-1/3" role="listitem">
+              <article>
+                <a href="#contato" className="group flex flex-col h-[500px] focus:outline-none focus:ring-2 focus:ring-primary rounded-xl" aria-label="Saiba mais sobre Aplicativos, Sistemas e Softwares">
+                  <div className="aspect-3/2 flex overflow-clip rounded-xl mb-4">
+                    <div className="flex-1">
+                      <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
+                        <Image
+                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          alt="Exemplo de aplicativo e sistema personalizado"
+                          fill
+                          className="object-cover object-center"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="flex flex-col flex-grow">
-                  <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
-                    App's, Sistemas e Softwares
-                  </h3>
-                  <div className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
-                    Desenvolvimento de App's, Sistemas e Softwares personalizados, otimizados para performance e escalabilidade, projetados para atender às necessidades específicas de cada cliente, tem alguma ideia em mente? vamos conversar!
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="text-lg font-medium md:text-xl lg:text-2xl mb-2 h-[60px] flex items-start">
+                      Apps, Sistemas e Softwares
+                    </h3>
+                    <p className="text-muted-foreground text-sm md:text-base flex-grow mb-1 overflow-hidden">
+                      Desenvolvimento de Aplicativos, Sistemas e Softwares personalizados, otimizados para performance e escalabilidade, projetados para atender às necessidades específicas de cada cliente. Tem alguma ideia em mente? Vamos conversar!
+                    </p>
+                    <span className="flex items-center text-sm mt-auto">
+                      Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </span>
                   </div>
-                  <div className="flex items-center text-sm mt-auto">
-                    Saiba mais <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </a>
+                </a>
+              </article>
             </CarouselItem>
           </CarouselContent>
         </Carousel>

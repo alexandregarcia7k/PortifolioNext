@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { HeroHeader } from "@/components/header";   
 import Hero from "@/components/hero-section";
 import { About } from "@/components/About";
 import { Projects } from "@/components/Projetcs";
@@ -9,7 +7,6 @@ import CallToAction from "@/components/CallToAction";
 export default function Home() {
   return (
     <>
-      <HeroHeader />
       <Hero />
       <About />
       <Projects />

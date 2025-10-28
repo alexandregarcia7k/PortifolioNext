@@ -15,36 +15,40 @@ const menuItems = [
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     return (
-        <header>
+        <header role="banner">
             <nav
                 data-state={menuState && 'active'}
-                className="bg-background/50 fixed z-50 w-full border-b backdrop-blur-3xl">
+                className="bg-background/50 fixed z-50 w-full border-b backdrop-blur-3xl"
+                role="navigation"
+                aria-label="Navegação principal">
                 <div className="mx-auto max-w-6xl 2xl:max-w-7xl px-6 transition-all duration-300">
                     <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:grid lg:grid-cols-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full items-center justify-between gap-12 lg:w-auto lg:justify-start">
                             <Link
                                 href="/"
-                                aria-label="home"
+                                aria-label="Ir para página inicial"
                                 className="flex items-center space-x-2">
                                 <Logo />
                             </Link>
 
                             <button
                                 onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
+                                aria-label={menuState ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+                                aria-expanded={menuState}
+                                aria-controls="mobile-menu"
                                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+                                <Menu aria-hidden="true" className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
+                                <X aria-hidden="true" className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
                             </button>
                         </div>
 
                         <div className="hidden lg:flex lg:justify-center">
-                            <ul className="flex gap-8 text-sm">
+                            <ul className="flex gap-8 text-sm" role="list">
                                 {menuItems.map((item, index) => (
                                     <li key={index}>
                                         <Link
                                             href={item.href}
-                                            className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                            className="text-muted-foreground hover:text-accent-foreground block duration-150 focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-2 py-1">
                                             <span>{item.name}</span>
                                         </Link>
                                     </li>
@@ -52,14 +56,16 @@ export const HeroHeader = () => {
                             </ul>
                         </div>
 
-                        <div className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent lg:col-start-3 lg:justify-self-end">
+                        <div 
+                            id="mobile-menu"
+                            className="bg-background in-data-[state=active]:block lg:in-data-[state=active]:flex mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent lg:col-start-3 lg:justify-self-end">
                             <div className="lg:hidden">
-                                <ul className="space-y-6 text-base">
+                                <ul className="space-y-6 text-base" role="list">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
                                             <Link
                                                 href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-2 py-1">
                                                 <span>{item.name}</span>
                                             </Link>
                                         </li>
@@ -70,7 +76,7 @@ export const HeroHeader = () => {
                                 <HoverButton
                                 className="rounded-sm"
                                 >
-                                    <Link href="#">
+                                    <Link href="#contato" aria-label="Ir para seção de contato">
                                         <span>Contato</span>
                                     </Link>
                                 </HoverButton>

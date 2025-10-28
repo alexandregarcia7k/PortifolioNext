@@ -22,7 +22,7 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ image, title, description, url, technologies }: ProjectCardProps) => {
   return (
-    <Card className="flex flex-col pt-0 overflow-hidden h-auto min-h-[450px] w-full max-w-sm" role="article">
+    <Card className="flex flex-col pt-0 overflow-hidden h-auto min-h-[450px] w-full max-w-sm" role="listitem">
       <div className="aspect-video w-full relative flex-shrink-0">
         <a 
           href={url} 
@@ -88,9 +88,9 @@ const ProjectCard = ({ image, title, description, url, technologies }: ProjectCa
 
 const Projects = () => {
   return (
-    <section className="w-full py-8 lg:py-16 bg-black relative px-6" aria-labelledby="projects-heading">
+    <section id="projetos" className="w-full py-8 lg:py-16 bg-black relative px-6" aria-labelledby="projects-heading">
       <div className="container mx-auto flex flex-col items-center gap-16 lg:px-16">
-        <div className="text-center">
+        <header className="text-center">
           <Badge variant="secondary" className="mb-6">
             Meus Projetos
           </Badge>
@@ -100,8 +100,8 @@ const Projects = () => {
           <p className="text-muted-foreground mb-8 md:text-base lg:max-w-2xl lg:text-lg">
             Projetos pessoais e para clientes e parcerias.
           </p>
-        </div>
-        <div className="flex flex-wrap gap-6 lg:gap-8 justify-center" role="list">
+        </header>
+        <div className="flex flex-wrap gap-6 lg:gap-8 justify-center" role="list" aria-label="Lista de projetos">
           <ProjectCard
             image="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
             title="Planly - Produtividade e Organização"
