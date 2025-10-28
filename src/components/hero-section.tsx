@@ -1,8 +1,11 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
 import TrueFocus from './TrueFocus';
 import Image from "next/image";
 import { HeroHeader } from "./header";
+import { Customized as MobileNavigation } from "./MobileNavigation";
 
 import { TextEffect } from "./ui/text-effect";
 import { GlowCard } from "./spotlight-card";
@@ -56,11 +59,16 @@ const techLogos = [
 export default function HeroSection() {
   return (
     <>
-      <HeroHeader />
+      <div className="hidden md:block">
+        <HeroHeader />
+      </div>
+      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+        <MobileNavigation />
+      </div>
       <main id="main-content" className="overflow-x-hidden">
         <section className="relative" aria-labelledby="hero-heading">
           <NeuralBackground />
-          <div className="pb-8 pt-28 sm:pt-32 md:pb-12 lg:pb-16 lg:pt-44">
+          <div className="pb-8 pt-12 sm:pt-16 md:pb-12 lg:pb-16 md:pt-32 lg:pt-44">
             <div className="relative mx-auto flex max-w-6xl 2xl:max-w-7xl flex-col px-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left relative z-10">
                 <TextEffect
@@ -237,7 +245,7 @@ export default function HeroSection() {
               <div className="pt-8">
                 <LogoLoop
                   logos={techLogos}
-                  speed={70}
+                  speed={50}
                   direction="left"
                   logoHeight={64}
                   gap={40}

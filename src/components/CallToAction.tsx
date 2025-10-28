@@ -3,7 +3,8 @@ import SphereHero from "@/components/geometric-sphere";
 
 export default function CallToAction() {
   return (
-    <SphereHero />
-    
+    <div id="call-to-action">
+      <SphereHero />
+    </div>
   );
 }

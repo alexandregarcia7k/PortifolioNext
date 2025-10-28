@@ -158,12 +158,7 @@ const useAnimationLoop = (
         return;
       }
 
-      // Reduz FPS para 30: atualiza a cada 2 frames
-      frameCountRef.current++;
-      if (frameCountRef.current % 2 !== 0) {
-        rafRef.current = requestAnimationFrame(animate);
-        return;
-      }
+      // Mantém 60 FPS
 
       if (lastTimestampRef.current === null) {
         lastTimestampRef.current = timestamp;
