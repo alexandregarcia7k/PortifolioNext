@@ -15,8 +15,8 @@ export const CONFIG = {
   // Intensity & Depth
   wireframeOpacity: 0.75, // Opacity of the wireframe lines
   wireframeShadowIntensity: 70, // Glow size (in px) of the wireframe
-  coreBlur: 200, // Blur radius (in px) of the core light
-  sphereDensity: 8, // Number of layered rings in the sphere (Higher = denser mesh)
+  coreBlur: 50, // Blur radius (in px) of the core light - Reduced by 75%
+  sphereDensity: 6, // Number of layered rings in the sphere (Higher = denser mesh)
 };
 
 /**
@@ -33,8 +33,9 @@ export const CONFIG = {
 export default function SphereHero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [shouldRender, setShouldRender] = useState(false);
 
-  // Pause animations when out of viewport
+  // Only render heavy elements when in viewport
   useEffect(() => {
     const element = containerRef.current;
     if (!element) return;
@@ -42,18 +43,22 @@ export default function SphereHero() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting && !shouldRender) {
+          setShouldRender(true);
+        }
       },
-      { threshold: 0.1 }
+      { threshold: 0.2, rootMargin: '50px' }
     );
 
     observer.observe(element);
     return () => observer.disconnect();
-  }, []);
+  }, [shouldRender]);
 
-  // Generate sphere rings
-  const sphereRings = Array.from({ length: CONFIG.sphereDensity }, (_, i) => {
+  // Generate sphere rings only when should render
+  const sphereRings = shouldRender ? Array.from({ length: CONFIG.sphereDensity }, (_, i) => {
     const step = 90 / (CONFIG.sphereDensity / 2);
     const angle = i * step;
+    const isOptimized = i >= 3; // Last 3 rings are optimized
     const commonStyle = {
       transform:
         i % 2 === 0 ? `rotateY(${angle}deg)` : `rotateX(${angle}deg)`,
@@ -61,12 +66,12 @@ export default function SphereHero() {
     return (
       <div
         key={`ring-${i}`}
-        className="wireframe-line"
+        className={isOptimized ? "wireframe-line-optimized" : "wireframe-line"}
         style={commonStyle}
         aria-hidden="true"
       />
     );
-  });
+  }) : [];
 
   // Inline style values derived from CONFIG to be set on elements
   const coreLightStyle = {
@@ -104,19 +109,19 @@ export default function SphereHero() {
       />
 
       {/* Layer 1: Localized Glow Behind Sphere */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={localGlowStyle} />
+      {shouldRender && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" style={localGlowStyle} />}
 
       {/* Layer 2: Core Light */}
-      <div 
+      {shouldRender && <div 
         className="core-light absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none" 
         style={{
           ...coreLightStyle,
           animationPlayState: isVisible ? 'running' : 'paused'
         }} 
-      />
+      />}
 
       {/* Layer 3: Geometric Glow Sphere (3D Animated Element) */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sphere-container z-40 pointer-events-none">
+      {shouldRender && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 sphere-container z-40 pointer-events-none">
         <div
           className="w-[700px] h-[700px] sphere-rotation"
           style={{
@@ -127,23 +132,10 @@ export default function SphereHero() {
         >
           {sphereRings}
         </div>
-      </div>
+      </div>}
 
-      {/* Layer 6: Hero Content (Foreground) */}
-      <div className="relative z-20 text-center max-w-5xl mx-auto p-8 backdrop-blur-sm rounded-xl content-foreground">
-        <h1 className="hero-title">
-          <span className="hero-gradient">Vector Intelligence</span>
-        </h1>
 
-        <p className="hero-sub">
-          Designing at the intersection of 3D fidelity and dynamic user experience. This is excellence, redefined.
-        </p>
 
-        <div className="hero-cta">
-          <button className="btn-primary">Initiate Launch</button>
-          <button className="btn-ghost">View Geometric Mesh</button>
-        </div>
-      </div>
     </div>
   );
 }

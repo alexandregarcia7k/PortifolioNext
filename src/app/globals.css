@@ -213,6 +213,21 @@ img[src*="/fotoportifolio"] {
   margin-top: -300px;
 }
 
+.wireframe-line-optimized {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  border: 2px solid rgba(139, 92, 246, 0.6);
+  border-radius: 50%;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  margin-left: -300px;
+  margin-top: -300px;
+  will-change: transform;
+}
+
 .hero-title {
   font-size: 4rem;
   font-weight: 800;
