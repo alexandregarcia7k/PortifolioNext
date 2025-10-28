@@ -3,17 +3,77 @@ import Link from 'next/link'
 import { Logo } from '@/components/logo'
 import { Menu, X } from 'lucide-react'
 import { HoverButton } from "@/components/ui/hover-button"
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
+const scrollToSection = (id: string) => {
+  const element = document.querySelector(id);
+  if (!element) return;
+  
+  const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  const duration = 1200;
+  let start: number | null = null;
+  
+  const easeInOutCubic = (t: number) => {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  };
+  
+  const animation = (currentTime: number) => {
+    if (start === null) start = currentTime;
+    const timeElapsed = currentTime - start;
+    const progress = Math.min(timeElapsed / duration, 1);
+    const ease = easeInOutCubic(progress);
+    
+    window.scrollTo(0, startPosition + distance * ease);
+    
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  };
+  
+  requestAnimationFrame(animation);
+};
 
 const menuItems = [
-    { name: 'Features', href: '#link' },
-    { name: 'Solution', href: '#link' },
-    { name: 'Pricing', href: '#link' },
-    { name: 'About', href: '#link' },
+    { name: 'Home', href: '#main-content', onClick: () => scrollToSection('#main-content') },
+    { name: 'Sobre', href: '#sobre', onClick: () => scrollToSection('#sobre') },
+    { name: 'Projetos', href: '#projetos', onClick: () => scrollToSection('#projetos') },
+    { name: 'Serviços', href: '#servicos', onClick: () => scrollToSection('#servicos') },
 ]
 
 export const HeroHeader = () => {
-    const [menuState, setMenuState] = React.useState(false)
+    const [menuState, setMenuState] = useState(false)
+    const [activeSection, setActiveSection] = useState(0)
+
+    useEffect(() => {
+        const sections = [
+            { id: '#main-content', index: 0 },
+            { id: '#sobre', index: 1 },
+            { id: '#projetos', index: 2 },
+            { id: '#servicos', index: 3 },
+        ];
+
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const element = document.querySelector(sections[i].id);
+                if (element) {
+                    const offsetTop = (element as HTMLElement).offsetTop;
+                    if (scrollPosition >= offsetTop) {
+                        setActiveSection(sections[i].index);
+                        break;
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [])
     return (
         <header role="banner">
             <nav
@@ -24,12 +84,13 @@ export const HeroHeader = () => {
                 <div className="mx-auto max-w-6xl 2xl:max-w-7xl px-6 transition-all duration-300">
                     <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:grid lg:grid-cols-3 lg:gap-0 lg:py-4">
                         <div className="flex w-full items-center justify-between gap-12 lg:w-auto lg:justify-start">
-                            <Link
-                                href="/"
+                            <a
+                                href="#main-content"
+                                onClick={(e) => { e.preventDefault(); scrollToSection('#main-content'); }}
                                 aria-label="Ir para página inicial"
-                                className="flex items-center space-x-2">
+                                className="flex items-center space-x-2 cursor-pointer">
                                 <Logo />
-                            </Link>
+                            </a>
 
                             <button
                                 onClick={() => setMenuState(!menuState)}
@@ -46,11 +107,14 @@ export const HeroHeader = () => {
                             <ul className="flex gap-8 text-sm" role="list">
                                 {menuItems.map((item, index) => (
                                     <li key={index}>
-                                        <Link
+                                        <a
                                             href={item.href}
-                                            className="text-muted-foreground hover:text-accent-foreground block duration-150 focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-2 py-1">
+                                            onClick={(e) => { e.preventDefault(); item.onClick(); }}
+                                            className={`block duration-150 focus:outline-none rounded-sm px-2 py-1 cursor-pointer ${
+                                                activeSection === index ? 'text-accent-foreground' : 'text-muted-foreground hover:text-accent-foreground focus:text-accent-foreground'
+                                            }`}>
                                             <span>{item.name}</span>
-                                        </Link>
+                                        </a>
                                     </li>
                                 ))}
                             </ul>
@@ -63,11 +127,14 @@ export const HeroHeader = () => {
                                 <ul className="space-y-6 text-base" role="list">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
-                                            <Link
+                                            <a
                                                 href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-2 py-1">
+                                                onClick={(e) => { e.preventDefault(); item.onClick(); setMenuState(false); }}
+                                                className={`block duration-150 focus:outline-none rounded-sm px-2 py-1 cursor-pointer ${
+                                                    activeSection === index ? 'text-accent-foreground' : 'text-muted-foreground hover:text-accent-foreground focus:text-accent-foreground'
+                                                }`}>
                                                 <span>{item.name}</span>
-                                            </Link>
+                                            </a>
                                         </li>
                                     ))}
                                 </ul>
@@ -75,10 +142,9 @@ export const HeroHeader = () => {
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <HoverButton
                                 className="rounded-sm"
+                                onClick={(e) => { e.preventDefault(); scrollToSection('#call-to-action'); setMenuState(false); }}
                                 >
-                                    <Link href="#contato" aria-label="Ir para seção de contato">
-                                        <span>Contato</span>
-                                    </Link>
+                                    <span>Call to Action</span>
                                 </HoverButton>
 
                             </div>

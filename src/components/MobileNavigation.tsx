@@ -75,7 +75,15 @@ const Customized = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return <LimelightNav className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl" items={customNavItems} defaultActiveIndex={activeIndex} />;
+  return (
+    <nav role="navigation" aria-label="Navegação principal mobile">
+      <LimelightNav 
+        className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-xl" 
+        items={customNavItems} 
+        defaultActiveIndex={activeIndex} 
+      />
+    </nav>
+  );
 };
 
 export { Customized };
