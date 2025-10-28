@@ -1,10 +1,78 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect, useRef } from "react";
 import SphereHero from "@/components/geometric-sphere";
+import { TextEffect } from "@/components/ui/text-effect";
+import { HoverButton } from "@/components/ui/hover-button";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { smoothScrollTo } from "@/lib/smoothScroll";
 
 export default function CallToAction() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [isVisible]);
+
   return (
-    <div id="call-to-action">
-      <SphereHero />
+    <div id="call-to-action" className="relative" ref={sectionRef}>
+      <div className="absolute inset-0 z-0">
+        <SphereHero />
+      </div>
+      <div className="relative z-10 flex items-center justify-center min-h-screen">
+        {isVisible && (
+          <div className="flex flex-col items-center gap-8 max-w-4xl px-6">
+            <div className="flex flex-col items-center gap-2">
+              <TextEffect
+                preset="fade-in-blur"
+                speedSegment={0.4}
+                as="div"
+                style={{ padding: 0, margin: 0 }}
+                className="font-bold leading-none w-full text-center text-[clamp(2.25rem,7vw,5rem)]" 
+                aria-hidden="true"
+              >
+                Seu próximo projeto
+              </TextEffect>
+              <TextEffect
+                preset="fade-in-blur"
+                speedSegment={0.4}
+                delay={0.3}
+                as="div"
+                style={{ padding: 0, margin: 0 }}
+                className="font-bold leading-none w-full text-center text-[clamp(2.25rem,7vw,5rem)]" 
+                aria-hidden="true"
+              >
+                começa aqui.
+              </TextEffect>
+            </div>
+            
+            <p className="text-center text-white/80 text-[clamp(1rem,2vw,1.25rem)] max-w-2xl">
+              Vamos transformar suas ideias em realidade digital. Entre em contato e dê o primeiro passo para criar uma presença online marcante que impulsiona seus resultados e conecta você ao seu público.
+            </p>
+
+            <HoverButton className="px-6 py-3 text-base rounded-sm">
+              <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} className="flex items-center gap-2">
+                <span>Entrar em Contato</span>
+                <ArrowRight className="w-5 h-5" aria-hidden="true" />
+              </a>
+            </HoverButton>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

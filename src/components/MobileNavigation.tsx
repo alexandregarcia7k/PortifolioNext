@@ -3,43 +3,14 @@
 import { LimelightNav} from "@/components/ui/limelight-nav";
 import { Home, User, MonitorSmartphone, BriefcaseBusiness, Pencil } from 'lucide-react';
 import { useState, useEffect } from 'react';
-
-const scrollToSection = (id: string) => {
-  const element = document.querySelector(id);
-  if (!element) return;
-  
-  const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
-  const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition;
-  const duration = 1200;
-  let start: number | null = null;
-  
-  const easeInOutCubic = (t: number) => {
-    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-  };
-  
-  const animation = (currentTime: number) => {
-    if (start === null) start = currentTime;
-    const timeElapsed = currentTime - start;
-    const progress = Math.min(timeElapsed / duration, 1);
-    const ease = easeInOutCubic(progress);
-    
-    window.scrollTo(0, startPosition + distance * ease);
-    
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
-    }
-  };
-  
-  requestAnimationFrame(animation);
-};
+import { smoothScrollTo } from '@/lib/smoothScroll';
 
 const customNavItems = [
-  { id: 'home', icon: <Home />, label: 'Home', onClick: () => scrollToSection('#main-content') },
-  { id: 'profile', icon: <User />, label: 'Sobre', onClick: () => scrollToSection('#sobre') },
-  { id: 'projects', icon: <MonitorSmartphone />, label: 'Projetos', onClick: () => scrollToSection('#projetos') },
-  { id: 'services', icon: <BriefcaseBusiness />, label: 'Serviços', onClick: () => scrollToSection('#servicos') },
-  { id: 'cta', icon: <Pencil />, label: 'Call to Action', onClick: () => scrollToSection('#call-to-action') },
+  { id: 'home', icon: <Home />, label: 'Home', onClick: () => smoothScrollTo('#main-content') },
+  { id: 'profile', icon: <User />, label: 'Sobre', onClick: () => smoothScrollTo('#sobre') },
+  { id: 'projects', icon: <MonitorSmartphone />, label: 'Projetos', onClick: () => smoothScrollTo('#projetos') },
+  { id: 'services', icon: <BriefcaseBusiness />, label: 'Serviços', onClick: () => smoothScrollTo('#servicos') },
+  { id: 'cta', icon: <Pencil />, label: 'Call to Action', onClick: () => smoothScrollTo('#call-to-action') },
 ];
 
 const Customized = () => {

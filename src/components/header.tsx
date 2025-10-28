@@ -4,42 +4,13 @@ import { Logo } from '@/components/logo'
 import { Menu, X } from 'lucide-react'
 import { HoverButton } from "@/components/ui/hover-button"
 import React, { useState, useEffect } from 'react'
-
-const scrollToSection = (id: string) => {
-  const element = document.querySelector(id);
-  if (!element) return;
-  
-  const targetPosition = element.getBoundingClientRect().top + window.pageYOffset;
-  const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition;
-  const duration = 1200;
-  let start: number | null = null;
-  
-  const easeInOutCubic = (t: number) => {
-    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-  };
-  
-  const animation = (currentTime: number) => {
-    if (start === null) start = currentTime;
-    const timeElapsed = currentTime - start;
-    const progress = Math.min(timeElapsed / duration, 1);
-    const ease = easeInOutCubic(progress);
-    
-    window.scrollTo(0, startPosition + distance * ease);
-    
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
-    }
-  };
-  
-  requestAnimationFrame(animation);
-};
+import { smoothScrollTo } from '@/lib/smoothScroll'
 
 const menuItems = [
-    { name: 'Home', href: '#main-content', onClick: () => scrollToSection('#main-content') },
-    { name: 'Sobre', href: '#sobre', onClick: () => scrollToSection('#sobre') },
-    { name: 'Projetos', href: '#projetos', onClick: () => scrollToSection('#projetos') },
-    { name: 'Serviços', href: '#servicos', onClick: () => scrollToSection('#servicos') },
+    { name: 'Home', href: '#main-content', onClick: () => smoothScrollTo('#main-content') },
+    { name: 'Sobre', href: '#sobre', onClick: () => smoothScrollTo('#sobre') },
+    { name: 'Projetos', href: '#projetos', onClick: () => smoothScrollTo('#projetos') },
+    { name: 'Serviços', href: '#servicos', onClick: () => smoothScrollTo('#servicos') },
 ]
 
 export const HeroHeader = () => {
@@ -86,7 +57,7 @@ export const HeroHeader = () => {
                         <div className="flex w-full items-center justify-between gap-12 lg:w-auto lg:justify-start">
                             <a
                                 href="#main-content"
-                                onClick={(e) => { e.preventDefault(); scrollToSection('#main-content'); }}
+                                onClick={(e) => { e.preventDefault(); smoothScrollTo('#main-content'); }}
                                 aria-label="Ir para página inicial"
                                 className="flex items-center space-x-2 cursor-pointer">
                                 <Logo />
@@ -142,9 +113,9 @@ export const HeroHeader = () => {
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <HoverButton
                                 className="rounded-sm"
-                                onClick={(e) => { e.preventDefault(); scrollToSection('#call-to-action'); setMenuState(false); }}
+                                onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); setMenuState(false); }}
                                 >
-                                    <span>Call to Action</span>
+                                    <span>Contato</span>
                                 </HoverButton>
 
                             </div>

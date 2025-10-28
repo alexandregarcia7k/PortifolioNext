@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { smoothScrollTo } from '@/lib/smoothScroll';
 import TrueFocus from './TrueFocus';
 import Image from "next/image";
 import { HeroHeader } from "./header";
@@ -136,9 +137,9 @@ export default function HeroSection() {
                     initialOpacity={0}
                   >
                     <HoverButton className="px-5 text-base rounded-sm">
-                      <Link href="#contato" aria-label="Entrar em contato com Alexandre Garcia">
+                      <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} aria-label="Entrar em contato com Alexandre Garcia">
                         <span className="text-nowrap">Entrar em Contato</span>
-                      </Link>
+                      </a>
                     </HoverButton>
                   </FadeContent>
                 </div>
