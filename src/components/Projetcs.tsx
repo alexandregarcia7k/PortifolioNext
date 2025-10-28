@@ -103,7 +103,7 @@ const Projects = () => {
         </header>
         <div className="flex flex-wrap gap-6 lg:gap-8 justify-center" role="list" aria-label="Lista de projetos">
           <ProjectCard
-            image="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+            image="/planlyb.webp"
             title="Planly - Produtividade e Organização"
             description="Uma plataforma completa de produtividade e organização pessoal. O projeto conta com uma landing page moderna e elegante, sistema de captação de usuários através de formulários otimizados e newsletter integrada. Desenvolvido com foco na experiência do usuário, já possui uma versão demo totalmente funcional para demonstração das funcionalidades principais."
             url="https://planly.space"
@@ -115,7 +115,7 @@ const Projects = () => {
             ]}
           />
           <ProjectCard
-            image="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+            image="/pulseb.webp"
             title="Studio Pulse"
             description="Landing page de alta conversão desenvolvida para uma empresa especializada em desenvolvimento de aplicações, sistemas personalizados e soluções tecnológicas sob medida. O projeto foi criado com foco em conversão de leads, apresentando os serviços da empresa de forma clara e profissional, com design moderno e responsivo."
             url="https://studiopulse.com.br"

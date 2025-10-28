@@ -93,7 +93,7 @@ const Services = () => {
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
                         <Image
-                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          src="/landingpage.webp"
                           alt="Exemplo de Landing Page moderna e responsiva"
                           fill
                           className="object-cover object-center"
@@ -123,7 +123,7 @@ const Services = () => {
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
                         <Image
-                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          src="/ecommerce.webp"
                           alt="Exemplo de plataforma de e-commerce moderna"
                           fill
                           className="object-cover object-center"
@@ -153,7 +153,7 @@ const Services = () => {
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
                         <Image
-                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          src="/dashboard.webp"
                           alt="Exemplo de dashboard analytics com gráficos e métricas"
                           fill
                           className="object-cover object-center"
@@ -183,7 +183,7 @@ const Services = () => {
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
                         <Image
-                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          src="/blog.webp"
                           alt="Exemplo de blog moderno e otimizado"
                           fill
                           className="object-cover object-center"
@@ -213,7 +213,7 @@ const Services = () => {
                     <div className="flex-1">
                       <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
                         <Image
-                          src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg"
+                          src="/app.webp"
                           alt="Exemplo de aplicativo e sistema personalizado"
                           fill
                           className="object-cover object-center"

@@ -47,7 +47,7 @@ function Footer() {
                 <Label htmlFor="email" className="sr-only">Email</Label>
                 <Input id="email" placeholder="Seu e-mail de contato" type="email" className="rounded-full" />
               </div>
-              <Button type="submit" className="rounded-full bg-violet-900 text-white">Enviar</Button>
+              <Button type="submit" className="rounded-full bg-violet-800 text-white bg:hover:bg-violet-950">Enviar</Button>
             </form>
           </div>
           <div className="text-center">
