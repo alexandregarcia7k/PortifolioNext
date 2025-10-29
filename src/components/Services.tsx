@@ -96,6 +96,7 @@ const Services = () => {
                           src="/landingpage.webp"
                           alt="Exemplo de Landing Page moderna e responsiva"
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
                         />
                       </div>
@@ -126,6 +127,7 @@ const Services = () => {
                           src="/ecommerce.webp"
                           alt="Exemplo de plataforma de e-commerce moderna"
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
                         />
                       </div>
@@ -156,6 +158,7 @@ const Services = () => {
                           src="/dashboard.webp"
                           alt="Exemplo de dashboard analytics com gráficos e métricas"
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
                         />
                       </div>
@@ -186,6 +189,7 @@ const Services = () => {
                           src="/blog.webp"
                           alt="Exemplo de blog moderno e otimizado"
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
                         />
                       </div>
@@ -216,6 +220,7 @@ const Services = () => {
                           src="/app.webp"
                           alt="Exemplo de aplicativo e sistema personalizado"
                           fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
                         />
                       </div>

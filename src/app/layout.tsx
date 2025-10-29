@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import { ToastProvider } from "@/components/ui/basic-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -83,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Pular para o conteúdo principal
         </a>
         {children}
+        <ToastProvider />
       </body>
     </html>
   );

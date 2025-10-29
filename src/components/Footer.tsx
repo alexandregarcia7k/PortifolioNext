@@ -5,8 +5,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Linkedin, Github, Mail } from "lucide-react"
 import { smoothScrollTo } from '@/lib/smoothScroll'
+import { showToast } from "@/components/ui/basic-toast"
+import { useState } from 'react'
 
 function Footer() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   return (
     <footer className="bg-black py-12">
       <div className="container mx-auto px-4 md:px-6">
@@ -42,12 +45,86 @@ function Footer() {
             </Button>
           </div>
           <div className="mb-8 w-full max-w-md">
-            <form className="flex space-x-2">
+            <form className="flex space-x-2" onSubmit={async (e) => {
+              e.preventDefault();
+              
+              const form = e.currentTarget;
+              const formData = new FormData(form);
+              const contact = formData.get('contact') as string;
+              const website = formData.get('website');
+
+              // Validação de email ou telefone
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,9}$/;
+              
+              if (!emailRegex.test(contact) && !phoneRegex.test(contact.replace(/\s/g, ''))) {
+                showToast({
+                  title: 'Formato inv\u00e1lido',
+                  description: 'Digite um email ou telefone v\u00e1lido.',
+                  type: 'error',
+                });
+                return;
+              }
+
+              setIsSubmitting(true);
+
+              try {
+                const response = await fetch('/api/newsletter', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ contact, website }),
+                });
+
+                const result = await response.json() as { success: boolean; error?: string; message?: string };
+
+                if (result.success === true) {
+                  form.reset();
+                  showToast({
+                    title: 'Inscrição confirmada!',
+                    description: 'Obrigado por se inscrever.',
+                    type: 'success',
+                  });
+                } else {
+                  showToast({
+                    title: 'Erro na inscrição',
+                    description: result.error || 'Tente novamente.',
+                    type: 'error',
+                  });
+                }
+              } catch (error) {
+                showToast({
+                  title: 'Erro de conexão',
+                  description: 'Verifique sua conexão e tente novamente.',
+                  type: 'error',
+                });
+              } finally {
+                setIsSubmitting(false);
+              }
+            }}>
               <div className="flex-grow">
-                <Label htmlFor="email" className="sr-only">Email</Label>
-                <Input id="email" placeholder="Seu e-mail de contato" type="email" className="rounded-full" />
+                <Label htmlFor="footer-contact" className="sr-only">Email ou Telefone</Label>
+                <Input 
+                  id="footer-contact" 
+                  name="contact"
+                  placeholder="Deixe seu email ou telefone para contato" 
+                  type="text" 
+                  className="rounded-full" 
+                  required
+                  disabled={isSubmitting}
+                />
               </div>
-              <Button type="submit" className="rounded-full bg-violet-800 text-white bg:hover:bg-violet-950">Enviar</Button>
+              {/* Honeypot */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
+                aria-hidden="true"
+              />
+              <Button type="submit" className="rounded-full" disabled={isSubmitting}>
+                {isSubmitting ? 'Enviando...' : 'Enviar'}
+              </Button>
             </form>
           </div>
           <div className="text-center">

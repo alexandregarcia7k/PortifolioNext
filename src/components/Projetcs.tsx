@@ -35,7 +35,8 @@ const ProjectCard = ({ image, title, description, url, technologies }: ProjectCa
             src={image}
             alt={`Imagem do projeto ${title}`}
             fill
-            className="object-cover object-center"
+            sizes="(max-width: 640px) 100vw, 384px"
+            className={`object-cover ${title.includes('Planly') ? 'object-top scale-90' : 'object-center'}`}
           />
         </a>
       </div>
@@ -110,8 +111,8 @@ const Projects = () => {
             technologies={[
               { name: "Next.js", icon: SiNextdotjs },
               { name: "React", icon: SiReact },
-              { name: "TypeScript", icon: SiTypescript },
-              { name: "Tailwind", icon: SiTailwindcss }
+              { name: "Tailwind", icon: SiTailwindcss },
+              { name: "TypeScript", icon: SiTypescript }
             ]}
           />
           <ProjectCard
