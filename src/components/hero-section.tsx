@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import dynamic from 'next/dynamic';
 import { smoothScrollTo } from '@/lib/smoothScroll';
 import TrueFocus from './TrueFocus';
 import Image from "next/image";
@@ -14,7 +15,11 @@ import ShinyText from "./ShinyText";
 import FadeContent from "./FadeContent";
 import { HoverButton } from "@/components/ui/hover-button";
 import LogoLoop from './LogoLoop';
-import NeuralBackground from "@/components/neural-background";
+
+const NeuralBackground = dynamic(() => import('@/components/neural-background'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-black" aria-hidden="true" />
+});
 import { 
   SiReact, 
   SiNextdotjs, 
@@ -123,20 +128,21 @@ export default function HeroSection() {
                     />
                   </div>
                 </FadeContent>
-                <div className="pl-1 mt-12 flex flex-col items-center gap-2 sm:flex-row sm:justify-center lg:justify-start lg:items-start">
-                  <FadeContent
-                    blur={true}
-                    duration={2000}
-                    easing="ease-out"
-                    initialOpacity={0}
-                  >
+                <FadeContent
+                  blur={true}
+                  duration={1000}
+                  easing="ease-out"
+                  initialOpacity={0}
+                  delay={0}
+                >
+                  <div className="pl-1 mt-12 flex flex-col items-center gap-2 sm:flex-row sm:justify-center lg:justify-start lg:items-start">
                     <HoverButton className="px-5 text-base rounded-sm">
                       <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} aria-label="Entrar em contato com Alexandre Garcia">
                         <span className="text-nowrap">Entrar em Contato</span>
                       </a>
                     </HoverButton>
-                  </FadeContent>
-                </div>
+                  </div>
+                </FadeContent>
               </div>
 
               <FadeContent

@@ -1,7 +1,12 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import SphereHero from "@/components/geometric-sphere";
+import dynamic from 'next/dynamic';
 import { TextEffect } from "@/components/ui/text-effect";
+
+const SphereHero = dynamic(() => import('@/components/geometric-sphere'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+});
 import { HoverButton } from "@/components/ui/hover-button";
 import { ArrowRight } from "lucide-react";
 import { smoothScrollTo } from "@/lib/smoothScroll";
