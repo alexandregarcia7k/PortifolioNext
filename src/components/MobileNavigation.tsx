@@ -6,11 +6,11 @@ import { useState, useEffect } from 'react';
 import { smoothScrollTo } from '@/lib/smoothScroll';
 
 const customNavItems = [
-  { id: 'home', icon: <Home />, label: 'Home', onClick: () => smoothScrollTo('#main-content') },
-  { id: 'profile', icon: <User />, label: 'Sobre', onClick: () => smoothScrollTo('#sobre') },
-  { id: 'projects', icon: <MonitorSmartphone />, label: 'Projetos', onClick: () => smoothScrollTo('#projetos') },
-  { id: 'services', icon: <BriefcaseBusiness />, label: 'Serviços', onClick: () => smoothScrollTo('#servicos') },
-  { id: 'cta', icon: <Pencil />, label: 'Call to Action', onClick: () => smoothScrollTo('#call-to-action') },
+  { id: 'home', icon: <Home />, label: 'Home', href: '#main-content', onClick: () => smoothScrollTo('#main-content') },
+  { id: 'profile', icon: <User />, label: 'Sobre', href: '#sobre', onClick: () => smoothScrollTo('#sobre') },
+  { id: 'projects', icon: <MonitorSmartphone />, label: 'Projetos', href: '#projetos', onClick: () => smoothScrollTo('#projetos') },
+  { id: 'services', icon: <BriefcaseBusiness />, label: 'Serviços', href: '#servicos', onClick: () => smoothScrollTo('#servicos') },
+  { id: 'cta', icon: <Pencil />, label: 'Call to Action', href: '#call-to-action', onClick: () => smoothScrollTo('#call-to-action') },
 ];
 
 const Customized = () => {

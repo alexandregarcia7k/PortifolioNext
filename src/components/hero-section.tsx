@@ -136,7 +136,7 @@ export default function HeroSection() {
                   delay={0}
                 >
                   <div className="pl-1 mt-12 flex flex-col items-center gap-2 sm:flex-row sm:justify-center lg:justify-start lg:items-start">
-                    <HoverButton className="px-5 text-base rounded-sm">
+                    <HoverButton className="px-6 py-3.5 sm:py-4 text-base rounded-sm">
                       <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} aria-label="Entrar em contato com Alexandre Garcia">
                         <span className="text-nowrap">Entrar em Contato</span>
                       </a>
