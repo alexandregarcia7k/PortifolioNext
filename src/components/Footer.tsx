@@ -44,8 +44,8 @@ function Footer() {
               </a>
             </Button>
           </div>
-          <div className="mb-8 w-full max-w-md">
-            <form className="flex space-x-2" onSubmit={async (e) => {
+          <div className="mb-8 w-full max-w-md px-4">
+            <form className="flex flex-col sm:flex-row gap-2" onSubmit={async (e) => {
               e.preventDefault();
               
               const form = e.currentTarget;
@@ -101,14 +101,14 @@ function Footer() {
                 setIsSubmitting(false);
               }
             }}>
-              <div className="flexgrow">
+              <div className="flex-grow w-full">
                 <Label htmlFor="footer-contact" className="sr-only">Email ou Telefone</Label>
                 <Input 
                   id="footer-contact" 
                   name="contact"
                   placeholder="Deixe seu email ou telefone para contato" 
                   type="text" 
-                  className="rounded-full" 
+                  className="rounded-full w-full" 
                   required
                   disabled={isSubmitting}
                 />
@@ -122,7 +122,7 @@ function Footer() {
                 style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px' }}
                 aria-hidden="true"
               />
-              <Button type="submit" className="rounded-full" disabled={isSubmitting}>
+              <Button type="submit" className="rounded-full w-full sm:w-auto" disabled={isSubmitting}>
                 {isSubmitting ? 'Enviando...' : 'Enviar'}
               </Button>
             </form>

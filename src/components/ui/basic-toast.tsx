@@ -5,7 +5,7 @@ import { Portal } from "@ark-ui/react/portal";
 import { X, CheckCircle, AlertCircle, Info } from "lucide-react";
 
 export const toaster = createToaster({
-  placement: "bottom-end",
+  placement: "bottom",
   gap: 16,
   overlap: true,
   duration: 5000,
@@ -35,7 +35,7 @@ export function ToastProvider() {
           const isInfo = toast.type === 'info';
 
           return (
-            <Toast.Root className="bg-zinc-900 border border-zinc-800 rounded-lg shadow-lg min-w-80 p-4 relative overflow-anywhere transition-all duration-300 ease-default will-change-transform h-(--height) opacity-(--opacity) translate-x-(--x) translate-y-(--y) scale-(--scale) z-(--z-index)">
+            <Toast.Root className="bg-zinc-900 border border-zinc-800 rounded-lg shadow-lg w-[calc(100vw-2rem)] max-w-md mx-auto p-4 relative overflow-anywhere transition-all duration-300 ease-default will-change-transform h-(--height) opacity-(--opacity) translate-x-(--x) translate-y-(--y) scale-(--scale) z-(--z-index)">
               <div className="flex items-start gap-3">
                 {isSuccess && <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />}
                 {isError && <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />}
