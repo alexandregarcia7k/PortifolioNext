@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
@@ -22,12 +22,12 @@ interface ProjectCardProps {
 const ProjectCard = ({ image, title, description, url, technologies }: ProjectCardProps) => {
   return (
     <Card className="flex flex-col pt-0 overflow-hidden h-auto min-h-[450px] w-full max-w-sm" role="listitem">
-      <div className="aspect-video w-full relative shrink-0">
+      <div className="aspect-video w-full relative shrink-0 overflow-hidden group">
         <a 
           href={url} 
           target="_blank" 
           rel="noopener noreferrer"
-          className="fade-in transition-opacity duration-200 hover:opacity-70 block h-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          className="block h-full relative focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           aria-label={`Ver projeto ${title}`}
         >
           <Image
@@ -35,8 +35,16 @@ const ProjectCard = ({ image, title, description, url, technologies }: ProjectCa
             alt={`Imagem do projeto ${title}`}
             fill
             sizes="(max-width: 640px) 100vw, 384px"
-            className="object-cover object-center"
+            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
+          {/* Overlay roxo com mais presença */}
+          <div className="absolute inset-0 bg-purple-600/0 group-hover:bg-purple-600/40 transition-colors duration-500 ease-out" aria-hidden="true" />
+          {/* Ícone ExternalLink centralizado com hover roxo escuro */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+            <div className="p-3 rounded-full bg-purple-950/60 backdrop-blur-sm group-hover:bg-purple-950/80 transition-colors duration-300">
+              <ExternalLink className="size-6 text-white" aria-hidden="true" />
+            </div>
+          </div>
         </a>
       </div>
       <div className="px-8 py-6 flex flex-col grow">
@@ -98,7 +106,7 @@ const Projects = () => {
             Projetos
           </h2>
           <p className="text-muted-foreground mb-8 md:text-base lg:max-w-2xl lg:text-lg">
-            Projetos pessoais e para clientes e parcerias.
+            Projetos pessoais e clientes ou parcerias.
           </p>
         </header>
         <div className="flex flex-wrap gap-6 lg:gap-8 justify-center" role="list" aria-label="Lista de projetos">
