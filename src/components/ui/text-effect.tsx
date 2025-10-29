@@ -28,9 +28,7 @@ export type TextEffectProps = {
   speedReveal?: number;
   speedSegment?: number;
   trigger?: boolean;
-  // @ts-expect-error - These are motion/framer-motion callbacks, not Server Actions
   onAnimationComplete?: () => void;
-  // @ts-expect-error - These are motion/framer-motion callbacks, not Server Actions
   onAnimationStart?: () => void;
   segmentWrapperClassName?: string;
   containerTransition?: Transition;
