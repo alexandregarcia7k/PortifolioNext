@@ -1,7 +1,6 @@
 'use client';
 
 import React from "react";
-import Link from "next/link";
 import { smoothScrollTo } from '@/lib/smoothScroll';
 import TrueFocus from './TrueFocus';
 import Image from "next/image";

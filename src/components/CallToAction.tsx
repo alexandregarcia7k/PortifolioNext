@@ -4,7 +4,6 @@ import SphereHero from "@/components/geometric-sphere";
 import { TextEffect } from "@/components/ui/text-effect";
 import { HoverButton } from "@/components/ui/hover-button";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { smoothScrollTo } from "@/lib/smoothScroll";
 
 export default function CallToAction() {
