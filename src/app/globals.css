@@ -118,10 +118,20 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Focus visible global - apenas teclado */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+  
+  /* Remove outline no mouse click */
+  *:focus:not(:focus-visible) {
+    @apply outline-none;
   }
 }
 

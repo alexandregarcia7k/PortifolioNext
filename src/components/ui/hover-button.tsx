@@ -20,6 +20,7 @@ const HoverButton = React.forwardRef<HTMLButtonElement, HoverButtonProps>(
           "transition-transform duration-200 ease-out",
           "hover:scale-[1.02]",
           "active:scale-[0.98]",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           "before:content-[''] before:absolute before:inset-0",
           "before:rounded-[inherit] before:pointer-events-none",
           "before:z-1",

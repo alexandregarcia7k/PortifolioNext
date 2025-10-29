@@ -80,8 +80,8 @@ export const HeroHeader = () => {
                                         <a
                                             href={item.href}
                                             onClick={(e) => { e.preventDefault(); item.onClick(); }}
-                                            className={`block duration-150 focus:outline-none rounded-sm px-2 py-1 cursor-pointer ${
-                                                activeSection === index ? 'text-accent-foreground' : 'text-muted-foreground hover:text-accent-foreground focus:text-accent-foreground'
+                                            className={`block duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-2 py-1 cursor-pointer ${
+                                                activeSection === index ? 'text-accent-foreground' : 'text-muted-foreground hover:text-accent-foreground focus-visible:text-accent-foreground'
                                             }`}>
                                             <span>{item.name}</span>
                                         </a>
@@ -100,8 +100,8 @@ export const HeroHeader = () => {
                                             <a
                                                 href={item.href}
                                                 onClick={(e) => { e.preventDefault(); item.onClick(); setMenuState(false); }}
-                                                className={`block duration-150 focus:outline-none rounded-sm px-2 py-1 cursor-pointer ${
-                                                    activeSection === index ? 'text-accent-foreground' : 'text-muted-foreground hover:text-accent-foreground focus:text-accent-foreground'
+                                                className={`block duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm px-2 py-1 cursor-pointer ${
+                                                    activeSection === index ? 'text-accent-foreground' : 'text-muted-foreground hover:text-accent-foreground focus-visible:text-accent-foreground'
                                                 }`}>
                                                 <span>{item.name}</span>
                                             </a>
