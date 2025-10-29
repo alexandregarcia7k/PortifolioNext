@@ -45,13 +45,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://seudominio.com",
+    url: "https://alexandregarcia.me",
     title: "Alexandre Garcia | Desenvolvedor Full-Stack",
     description: "Desenvolvedor Full-Stack especializado em React, Next.js e TypeScript. Criando experiências digitais marcantes e soluções web escaláveis.",
     siteName: "Alexandre Garcia Portfolio",
     images: [
       {
-        url: "/fotoportifolio.png",
+        url: "/fotoportifolio.webp",
         width: 1200,
         height: 630,
         alt: "Alexandre Garcia - Desenvolvedor Full-Stack",
@@ -62,10 +62,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Alexandre Garcia | Desenvolvedor Full-Stack",
     description: "Desenvolvedor Full-Stack especializado em React, Next.js e TypeScript",
-    images: ["/fotoportifolio.png"],
+    images: ["/fotoportifolio.webp"],
   },
   alternates: {
-    canonical: "https://seudominio.com",
+    canonical: "https://alexandregarcia.me",
   },
   verification: {
     google: "seu-codigo-de-verificacao-google",
@@ -79,6 +79,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#000000" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Alexandre Garcia",
+              "jobTitle": "Desenvolvedor Full-Stack",
+              "url": "https://alexandregarcia.me",
+              "sameAs": [
+                "https://www.linkedin.com/in/alexandregarcia7k",
+                "https://github.com/alexandregarcia7k"
+              ],
+              "email": "alexandregarciassj@outlook.com",
+              "knowsAbout": [
+                "React",
+                "Next.js",
+                "TypeScript",
+                "JavaScript",
+                "Node.js",
+                "Vue.js",
+                "Nuxt.js",
+                "Tailwind CSS",
+                "Web Development",
+                "Full-Stack Development"
+              ],
+              "description": "Desenvolvedor Full-Stack especializado em React, Next.js, TypeScript e Node.js. Criando experiências digitais marcantes e soluções web escaláveis."
+            })
+          }}
+        />
       </head>
       <body className={`${geistSans.variable} bg-background text-foreground min-h-screen m-0 p-0 overflow-x-hidden`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded">

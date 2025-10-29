@@ -28,13 +28,14 @@ export default function CallToAction() {
   }, [isVisible]);
 
   return (
-    <div id="call-to-action" className="relative" ref={sectionRef}>
-      <div className="absolute inset-0 z-0">
+    <section id="call-to-action" className="relative" ref={sectionRef} aria-labelledby="cta-heading">
+      <div className="absolute inset-0 z-0" aria-hidden="true">
         <SphereHero />
       </div>
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         {isVisible && (
           <div className="flex flex-col items-center gap-8 max-w-4xl px-6">
+            <h2 id="cta-heading" className="sr-only">Chamada para ação - Inicie seu projeto</h2>
             <div className="flex flex-col items-center gap-2">
               <TextEffect
                 preset="fade-in-blur"
@@ -64,7 +65,7 @@ export default function CallToAction() {
             </p>
 
             <HoverButton className="px-6 py-3 text-base rounded-sm">
-              <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} className="flex items-center gap-2">
+              <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} className="flex items-center gap-2" aria-label="Entrar em contato para iniciar seu projeto">
                 <span>Entrar em Contato</span>
                 <ArrowRight className="w-5 h-5" aria-hidden="true" />
               </a>
@@ -72,6 +73,6 @@ export default function CallToAction() {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

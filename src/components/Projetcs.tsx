@@ -32,10 +32,11 @@ const ProjectCard = ({ image, title, description, url, technologies }: ProjectCa
         >
           <Image
             src={image}
-            alt={`Imagem do projeto ${title}`}
+            alt={`Captura de tela do projeto ${title} mostrando a interface principal`}
             fill
             sizes="(max-width: 640px) 100vw, 384px"
             className="object-cover object-center"
+            loading="lazy"
           />
         </a>
       </div>

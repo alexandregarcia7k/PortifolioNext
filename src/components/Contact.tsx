@@ -29,7 +29,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contato" className="w-full py-16 lg:py-24 px-6 bg-black">
+    <section id="contato" className="w-full py-16 lg:py-24 px-6 bg-black" aria-labelledby="contact-heading">
       <div className="container mx-auto max-w-7xl">
         <ContactCard
           title="Entre em Contato"
@@ -106,57 +106,67 @@ export default function Contact() {
             }
           }}>
             <div>
-              <label className="block text-sm font-medium mb-2">Nome</label>
+              <label htmlFor="contact-name" className="block text-sm font-medium mb-2">Nome</label>
               <Input
+                id="contact-name"
                 type="text"
                 name="name"
                 placeholder="Seu nome"
                 className="w-full"
                 required
                 disabled={isSubmitting}
+                aria-required="true"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Email</label>
+              <label htmlFor="contact-email" className="block text-sm font-medium mb-2">Email</label>
               <Input
+                id="contact-email"
                 type="email"
                 name="email"
                 placeholder="seu@email.com"
                 className="w-full"
                 required
                 disabled={isSubmitting}
+                aria-required="true"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Telefone</label>
+              <label htmlFor="contact-phone" className="block text-sm font-medium mb-2">Telefone</label>
               <Input
+                id="contact-phone"
                 type="text"
                 name="phone"
                 placeholder="(99) 99999-9999"
                 className="w-full"
                 required
                 disabled={isSubmitting}
+                aria-required="true"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Assunto</label>
+              <label htmlFor="contact-subject" className="block text-sm font-medium mb-2">Assunto</label>
               <Input
+                id="contact-subject"
                 type="text"
                 name="subject"
                 placeholder="Sobre o que deseja falar?"
                 className="w-full"
                 required
                 disabled={isSubmitting}
+                aria-required="true"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-2">Mensagem</label>
+              <label htmlFor="contact-message" className="block text-sm font-medium mb-2">Mensagem</label>
               <Textarea
+                id="contact-message"
                 name="message"
                 placeholder="Escreva sua mensagem aqui..."
                 className="w-full min-h-[120px]"
                 required
                 disabled={isSubmitting}
+                aria-required="true"
               />
             </div>
             {/* Honeypot: campo invisível para bots */}

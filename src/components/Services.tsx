@@ -98,6 +98,7 @@ const Services = () => {
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -129,6 +130,7 @@ const Services = () => {
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -160,6 +162,7 @@ const Services = () => {
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -191,6 +194,7 @@ const Services = () => {
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
+                          loading="lazy"
                         />
                       </div>
                     </div>
@@ -222,6 +226,7 @@ const Services = () => {
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           className="object-cover object-center"
+                          loading="lazy"
                         />
                       </div>
                     </div>
