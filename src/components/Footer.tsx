@@ -101,7 +101,7 @@ function Footer() {
                 setIsSubmitting(false);
               }
             }}>
-              <div className="flex-grow">
+              <div className="flexgrow">
                 <Label htmlFor="footer-contact" className="sr-only">Email ou Telefone</Label>
                 <Input 
                   id="footer-contact" 

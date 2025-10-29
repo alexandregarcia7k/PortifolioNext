@@ -162,7 +162,7 @@ export default function HeroSection() {
                     {/* Foto de perfil */}
                     <div className="image-rounded-container relative w-full h-[350px] mb-3">
                       <Image
-                        src="/fotoportifolio.png"
+                        src="/fotoportifolio.webp"
                         alt="Foto profissional de Alexandre Garcia, desenvolvedor full-stack especializado em React e Next.js"
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 340px"

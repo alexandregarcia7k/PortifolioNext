@@ -2,10 +2,9 @@
 
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
-import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiNodedotjs, SiPrisma } from "react-icons/si";
+import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, } from "react-icons/si";
 
 interface Technology {
   name: string;
@@ -23,7 +22,7 @@ interface ProjectCardProps {
 const ProjectCard = ({ image, title, description, url, technologies }: ProjectCardProps) => {
   return (
     <Card className="flex flex-col pt-0 overflow-hidden h-auto min-h-[450px] w-full max-w-sm" role="listitem">
-      <div className="aspect-video w-full relative flex-shrink-0">
+      <div className="aspect-video w-full relative shrink-0">
         <a 
           href={url} 
           target="_blank" 
@@ -36,11 +35,11 @@ const ProjectCard = ({ image, title, description, url, technologies }: ProjectCa
             alt={`Imagem do projeto ${title}`}
             fill
             sizes="(max-width: 640px) 100vw, 384px"
-            className={`object-cover ${title.includes('Planly') ? 'object-top scale-90' : 'object-center'}`}
+            className="object-cover object-center"
           />
         </a>
       </div>
-      <div className="px-8 py-6 flex flex-col flex-grow">
+      <div className="px-8 py-6 flex flex-col grow">
         <h3 className="text-lg font-semibold hover:underline md:text-xl mb-4 line-clamp-2">
           <a 
             href={url} 
@@ -52,7 +51,7 @@ const ProjectCard = ({ image, title, description, url, technologies }: ProjectCa
             {title}
           </a>
         </h3>
-        <p className="text-muted-foreground mb-4 text-sm flex-grow">
+        <p className="text-muted-foreground mb-4 text-sm grow">
           {description}
         </p>
         <div className="mt-auto">
