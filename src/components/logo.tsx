@@ -10,11 +10,11 @@ export const Logo = ({ className }: { className?: string }) => {
             xmlns="http://www.w3.org/2000/svg"
             className={cn('w-12 h-12', className)}>
             <defs>
-                {/* Gradiente para simular luz neon realista (branco no centro → roxo nas bordas) */}
+                {/* Gradiente para simular luz neon realista (branco no centro → roxo ultra vibrante nas bordas) */}
                 <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{ stopColor: '#C084FC', stopOpacity: 1 }} />
+                    <stop offset="0%" style={{ stopColor: '#F0ABFC', stopOpacity: 1 }} />
                     <stop offset="50%" style={{ stopColor: '#FFFFFF', stopOpacity: 1 }} />
-                    <stop offset="100%" style={{ stopColor: '#C084FC', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#F0ABFC', stopOpacity: 1 }} />
                 </linearGradient>
                 
                 {/* Filtro com múltiplas camadas de glow para efeito neon realista */}
@@ -43,7 +43,7 @@ export const Logo = ({ className }: { className?: string }) => {
                     stroke-width: 6;
                     stroke-linecap: round;
                     fill: none;
-                    filter: url(#neonGlow) drop-shadow(0 0 20px #A259F7) drop-shadow(0 0 40px #C084FC);
+                    filter: url(#neonGlow) drop-shadow(0 0 25px #E879F9) drop-shadow(0 0 50px #F0ABFC) drop-shadow(0 0 75px #D946EF);
                     stroke-dasharray: 150 2650;
                     animation: neonDash 8s linear infinite;
                 }
@@ -61,29 +61,29 @@ export const Logo = ({ className }: { className?: string }) => {
             <g clipPath="url(#clip0_3389_39)" opacity="0.6">
                 <path d="M263.548 468.5H118.049L64.5117 573.704L214.012 574.704L263.548 468.5Z" stroke="black" />
                 <g filter="url(#filter0_i_3389_39)">
-                    <path d="M282.048 141L352.048 282L263.548 468.5H118.049L282.048 141Z" fill="#5A1B70" />
+                    <path d="M282.048 141L352.048 282L263.548 468.5H118.049L282.048 141Z" fill="#9333EA" />
                 </g>
-                <path d="M282.048 141L352.048 282L263.548 468.5H118.049L282.048 141Z" stroke="#5D1B73" />
+                <path d="M282.048 141L352.048 282L263.548 468.5H118.049L282.048 141Z" stroke="#A855F7" />
                 <g filter="url(#filter1_i_3389_39)">
-                    <path d="M263.548 468.5H118.049L64.5117 573.704L214.012 574.704L263.548 468.5Z" fill="#6F2A88" />
+                    <path d="M263.548 468.5H118.049L64.5117 573.704L214.012 574.704L263.548 468.5Z" fill="#A855F7" />
                 </g>
-                <path d="M263.548 468.5H118.049L64.5117 573.704L214.012 574.704L263.548 468.5Z" stroke="#6F2A88" />
+                <path d="M263.548 468.5H118.049L64.5117 573.704L214.012 574.704L263.548 468.5Z" stroke="#C084FC" />
                 <g filter="url(#filter2_i_3389_39)">
-                    <path d="M282.048 141L352.098 2L421.346 140L352.346 281.5L282.048 141Z" fill="#6F2A88" />
+                    <path d="M282.048 141L352.098 2L421.346 140L352.346 281.5L282.048 141Z" fill="#A855F7" />
                 </g>
-                <path d="M282.048 141L352.098 2L421.346 140L352.346 281.5L282.048 141Z" stroke="#6F2A88" />
+                <path d="M282.048 141L352.098 2L421.346 140L352.346 281.5L282.048 141Z" stroke="#C084FC" />
                 <g filter="url(#filter3_i_3389_39)">
-                    <path d="M421.346 140L352.346 281.5L543.346 698H696.846L421.346 140Z" fill="#3B0A57" />
+                    <path d="M421.346 140L352.346 281.5L543.346 698H696.846L421.346 140Z" fill="#7C3AED" />
                 </g>
-                <path d="M421.346 140L352.346 281.5L543.346 698H696.846L421.346 140Z" stroke="#3B0A57" />
+                <path d="M421.346 140L352.346 281.5L543.346 698H696.846L421.346 140Z" stroke="#9333EA" />
                 <g filter="url(#filter4_i_3389_39)">
-                    <path d="M377.282 467.204L263.548 468.5L214.012 574.704H429.011L377.282 467.204Z" fill="#5A1B70" />
+                    <path d="M377.282 467.204L263.548 468.5L214.012 574.704H429.011L377.282 467.204Z" fill="#9333EA" />
                 </g>
-                <path d="M377.282 467.204L263.548 468.5L214.012 574.704H429.011L377.282 467.204Z" stroke="#5A1B70" />
+                <path d="M377.282 467.204L263.548 468.5L214.012 574.704H429.011L377.282 467.204Z" stroke="#A855F7" />
                 <g filter="url(#filter5_i_3389_39)">
-                    <path d="M43.0002 614.5H197L157 698H1L43.0002 614.5Z" fill="#3B0A57" />
+                    <path d="M43.0002 614.5H197L157 698H1L43.0002 614.5Z" fill="#7C3AED" />
                 </g>
-                <path d="M43.0002 614.5H197L157 698H1L43.0002 614.5Z" stroke="#3B0A57" />
+                <path d="M43.0002 614.5H197L157 698H1L43.0002 614.5Z" stroke="#9333EA" />
             </g>
             <defs>
                 <filter id="filter0_i_3389_39" x="118.049" y="112" width="277.999" height="356.5" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
