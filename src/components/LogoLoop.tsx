@@ -220,6 +220,9 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     const [copyCount, setCopyCount] = useState<number>(ANIMATION_CONFIG.MIN_COPIES);
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [isInViewport, setIsInViewport] = useState<boolean>(false);
+    
+    
+    const dimensionsCache = useRef({ containerWidth: 0, sequenceWidth: 0 });
 
     const targetVelocity = useMemo(() => {
       const magnitude = Math.abs(speed);
@@ -229,10 +232,16 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     }, [speed, direction]);
 
     const updateDimensions = useCallback(() => {
+      
       const containerWidth = containerRef.current?.clientWidth ?? 0;
       const sequenceWidth = seqRef.current?.getBoundingClientRect?.()?.width ?? 0;
-
-      if (sequenceWidth > 0) {
+      
+      // Só atualiza se mudou significativamente (>5px)
+      const widthChanged = Math.abs(dimensionsCache.current.sequenceWidth - sequenceWidth) > 5;
+      const containerChanged = Math.abs(dimensionsCache.current.containerWidth - containerWidth) > 5;
+      
+      if (sequenceWidth > 0 && (widthChanged || containerChanged)) {
+        dimensionsCache.current = { containerWidth, sequenceWidth };
         setSeqWidth(Math.ceil(sequenceWidth));
         const copiesNeeded = Math.ceil(containerWidth / sequenceWidth) + ANIMATION_CONFIG.COPY_HEADROOM;
         setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
@@ -243,7 +252,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
 
     useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight]);
 
-    // Detecta quando está no viewport
+    // Detecta quando está no viewport com rootMargin para iniciar antes
     useEffect(() => {
       const element = containerRef.current;
       if (!element) return;
@@ -252,7 +261,10 @@ export const LogoLoop = React.memo<LogoLoopProps>(
         ([entry]) => {
           setIsInViewport(entry.isIntersecting);
         },
-        { threshold: 0.1 }
+        { 
+          threshold: 0,
+          rootMargin: '50px' // Inicia animação 50px antes de entrar
+        }
       );
 
       observer.observe(element);

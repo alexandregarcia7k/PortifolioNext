@@ -129,7 +129,7 @@ function Footer() {
           </div>
           <div className="text-center">
             <p className="text-sm text-muted-foreground">
-              © 2025 Alexandre Garcia.
+              © 2025 Alexandre Garcia. Site feito com Next.js e Tailwind CSS.
             </p>
           </div>
         </div>
