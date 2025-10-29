@@ -34,6 +34,7 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [focusRect, setFocusRect] = useState<FocusRect>({ x: 0, y: 0, width: 0, height: 0 });
+  const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!manualMode) {
@@ -52,15 +53,29 @@ const TrueFocus: React.FC<TrueFocusProps> = ({
     if (currentIndex === null || currentIndex === -1) return;
     if (!wordRefs.current[currentIndex] || !containerRef.current) return;
 
-    const parentRect = containerRef.current.getBoundingClientRect();
-    const activeRect = wordRefs.current[currentIndex]!.getBoundingClientRect();
+    // Debounce para evitar múltiplos reflows
+    if (updateTimeoutRef.current) {
+      clearTimeout(updateTimeoutRef.current);
+    }
 
-    setFocusRect({
-      x: activeRect.left - parentRect.left,
-      y: activeRect.top - parentRect.top,
-      width: activeRect.width,
-      height: activeRect.height
-    });
+    updateTimeoutRef.current = setTimeout(() => {
+      // Batch de leituras do DOM
+      const parentRect = containerRef.current!.getBoundingClientRect();
+      const activeRect = wordRefs.current[currentIndex]!.getBoundingClientRect();
+
+      setFocusRect({
+        x: activeRect.left - parentRect.left,
+        y: activeRect.top - parentRect.top,
+        width: activeRect.width,
+        height: activeRect.height
+      });
+    }, 16); // ~1 frame de delay
+
+    return () => {
+      if (updateTimeoutRef.current) {
+        clearTimeout(updateTimeoutRef.current);
+      }
+    };
   }, [currentIndex, words.length]);
 
   const handleMouseEnter = (index: number) => {

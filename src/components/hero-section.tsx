@@ -7,7 +7,6 @@ import Image from "next/image";
 import { HeroHeader } from "./header";
 import { Customized as MobileNavigation } from "./MobileNavigation";
 
-import { TextEffect } from "./ui/text-effect";
 import { GlowCard } from "./spotlight-card";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Typewriter } from "./ui/typewriter";
@@ -71,36 +70,32 @@ export default function HeroSection() {
           <div className="pb-8 pt-12 sm:pt-16 md:pb-12 lg:pb-16 md:pt-32 lg:pt-44">
             <div className="relative mx-auto flex max-w-6xl 2xl:max-w-7xl flex-col px-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left relative z-10">
-                <TextEffect
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  as="p"
-                  className="pl-1 font-light text-white/80 leading-none mb-1 text-[clamp(0.9rem,2.2vw,1.6rem)]"
+                <FadeContent
+                  blur={true}
+                  duration={1000}
+                  easing="ease-out"
+                  initialOpacity={0}
+                  delay={0}
                 >
-                  Olá, sou Alexandre
-                </TextEffect>
-                <h1 id="hero-heading" className="sr-only">Alexandre Garcia - Desenvolvedor Full-Stack especializado em React, Next.js e TypeScript</h1>
-                <TextEffect
-                  preset="fade-in-blur"
-                  speedSegment={0.4}
-                  as="div"
-                  style={{ padding: 0, margin: 0 }}
-                  className="font-bold leading-none mb-1 w-full text-[clamp(2.25rem,7vw,5rem)]" 
-                  aria-hidden="true"
-                >
-                  DESENVOLVEDOR
-                </TextEffect>
-                <TextEffect
-                  preset="fade-in-blur"
-                  speedSegment={0.3}
-                  delay={0.3}
-                  as="div"
-                  style={{ padding: 0, margin: 0 }}
-                  className="font-bold leading-none mb-4 lg:mb-6 w-full text-[clamp(2.25rem,7vw,5rem)]"
-                  aria-hidden="true"
-                >
-                  FULL-STACK
-                </TextEffect>
+                  <p className="pl-1 font-light text-white/80 leading-none mb-1 text-[clamp(0.9rem,2.2vw,1.6rem)]">
+                    Olá, sou Alexandre
+                  </p>
+                  <h1 id="hero-heading" className="sr-only">Alexandre Garcia - Desenvolvedor Full-Stack especializado em React, Next.js e TypeScript</h1>
+                  <div
+                    style={{ padding: 0, margin: 0 }}
+                    className="font-bold leading-none mb-1 w-full text-[clamp(2.25rem,7vw,5rem)]" 
+                    aria-hidden="true"
+                  >
+                    DESENVOLVEDOR
+                  </div>
+                  <div
+                    style={{ padding: 0, margin: 0 }}
+                    className="font-bold leading-none mb-4 lg:mb-6 w-full text-[clamp(2.25rem,7vw,5rem)]"
+                    aria-hidden="true"
+                  >
+                    FULL-STACK
+                  </div>
+                </FadeContent>
                 <FadeContent
                   blur={true}
                   duration={2000}

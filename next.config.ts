@@ -18,6 +18,16 @@ const nextConfig: NextConfig = {
     ],
     qualities: [75, 90, 100],
   },
+  experimental: {
+    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    optimizeCss: true,
+  },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  transpilePackages: [],
+  swcMinify: true,
 };
 
 export default nextConfig;
