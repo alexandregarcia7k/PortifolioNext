@@ -45,6 +45,8 @@ export default function Contact() {
             const formData = new FormData(form);
             const phone = formData.get('phone') as string;
             
+            setIsSubmitting(true);
+            
             // Validação de telefone
             const phoneRegex = /^[\+]?[(]?[0-9]{1,4}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,9}$/;
             if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
@@ -65,8 +67,6 @@ export default function Contact() {
               message: formData.get('message'),
               website: formData.get('website'),
             };
-
-            setIsSubmitting(true);
             setSubmitStatus('idle');
 
             try {
