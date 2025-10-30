@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
   },
 
   transpilePackages: [],
-  swcMinify: true,
+  
 };
 
 export default nextConfig;

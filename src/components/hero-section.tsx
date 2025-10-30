@@ -1,13 +1,12 @@
 'use client';
 
 import React from "react";
-import dynamic from 'next/dynamic';
 import { smoothScrollTo } from '@/lib/smoothScroll';
 import TrueFocus from './TrueFocus';
 import Image from "next/image";
 import { HeroHeader } from "./header";
 import { Customized as MobileNavigation } from "./MobileNavigation";
-
+import NeuralBackground from './neural-background';
 import { GlowCard } from "./spotlight-card";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Typewriter } from "./ui/typewriter";
@@ -15,11 +14,6 @@ import ShinyText from "./ShinyText";
 import FadeContent from "./FadeContent";
 import { HoverButton } from "@/components/ui/hover-button";
 import LogoLoop from './LogoLoop';
-
-const NeuralBackground = dynamic(() => import('@/components/neural-background'), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0 bg-black" aria-hidden="true" />
-});
 import { 
   SiReact, 
   SiNextdotjs, 
@@ -39,6 +33,7 @@ import {
   SiPrisma,
   SiNodedotjs 
 } from 'react-icons/si';
+
 
 const techLogos = [
     { node: <SiReact className="hover:text-[#61DAFB] transition-all duration-150 ease-out" />, title: "React" },
@@ -72,6 +67,7 @@ export default function HeroSection() {
       <main id="main-content" className="overflow-x-hidden">
         <section className="relative" aria-labelledby="hero-heading">
           <NeuralBackground />
+
           <div className="pb-8 pt-12 sm:pt-16 md:pb-12 lg:pb-16 md:pt-32 lg:pt-44">
             <div className="relative mx-auto flex max-w-6xl 2xl:max-w-7xl flex-col px-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="mx-auto max-w-lg text-center lg:ml-0 lg:w-1/2 lg:text-left relative z-10">

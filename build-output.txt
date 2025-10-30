@@ -1,0 +1,83 @@
+
+> portifolionextjs@0.1.0 build
+> next build --turbopack
+
+   ▲ Next.js 15.5.4 (Turbopack)
+   - Environments: .env.local
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+ ✓ Finished writing to disk in 48ms
+
+> Build error occurred
+Error: Turbopack build failed with 4 errors:
+./src/components/hero-section.tsx:9:1
+Module not found: Can't resolve './neural-background-canvas'
+[0m [90m  7 |[39m [36mimport[39m { [33mHeroHeader[39m } [36mfrom[39m [32m"./header"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mCustomized[39m [36mas[39m [33mMobileNavigation[39m } [36mfrom[39m [32m"./MobileNavigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m [33mNeuralBackgroundCanvas[39m [36mfrom[39m [32m'./neural-background-canvas'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [90m// import NeuralBackgroundCSS from './neural-background-css'; // Versão CSS alternativa[39m
+ [90m 11 |[39m [36mimport[39m { [33mGlowCard[39m } [36mfrom[39m [32m"./spotlight-card"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mGithub[39m[33m,[39m [33mLinkedin[39m[33m,[39m [33mMail[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/components/hero-section.tsx:9:1
+Module not found: Can't resolve './neural-background-canvas'
+[0m [90m  7 |[39m [36mimport[39m { [33mHeroHeader[39m } [36mfrom[39m [32m"./header"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mCustomized[39m [36mas[39m [33mMobileNavigation[39m } [36mfrom[39m [32m"./MobileNavigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m [33mNeuralBackgroundCanvas[39m [36mfrom[39m [32m'./neural-background-canvas'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [90m// import NeuralBackgroundCSS from './neural-background-css'; // Versão CSS alternativa[39m
+ [90m 11 |[39m [36mimport[39m { [33mGlowCard[39m } [36mfrom[39m [32m"./spotlight-card"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mGithub[39m[33m,[39m [33mLinkedin[39m[33m,[39m [33mMail[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/components/hero-section.tsx:9:1
+Module not found: Can't resolve './neural-background-canvas'
+[0m [90m  7 |[39m [36mimport[39m { [33mHeroHeader[39m } [36mfrom[39m [32m"./header"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mCustomized[39m [36mas[39m [33mMobileNavigation[39m } [36mfrom[39m [32m"./MobileNavigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m [33mNeuralBackgroundCanvas[39m [36mfrom[39m [32m'./neural-background-canvas'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [90m// import NeuralBackgroundCSS from './neural-background-css'; // Versão CSS alternativa[39m
+ [90m 11 |[39m [36mimport[39m { [33mGlowCard[39m } [36mfrom[39m [32m"./spotlight-card"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mGithub[39m[33m,[39m [33mLinkedin[39m[33m,[39m [33mMail[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+./src/components/hero-section.tsx:9:1
+Module not found: Can't resolve './neural-background-canvas'
+[0m [90m  7 |[39m [36mimport[39m { [33mHeroHeader[39m } [36mfrom[39m [32m"./header"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mCustomized[39m [36mas[39m [33mMobileNavigation[39m } [36mfrom[39m [32m"./MobileNavigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m [33mNeuralBackgroundCanvas[39m [36mfrom[39m [32m'./neural-background-canvas'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [90m// import NeuralBackgroundCSS from './neural-background-css'; // Versão CSS alternativa[39m
+ [90m 11 |[39m [36mimport[39m { [33mGlowCard[39m } [36mfrom[39m [32m"./spotlight-card"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mGithub[39m[33m,[39m [33mLinkedin[39m[33m,[39m [33mMail[39m } [36mfrom[39m [32m"lucide-react"[39m[33m;[39m[0m
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+    at <unknown> (./src/components/hero-section.tsx:9:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/components/hero-section.tsx:9:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/components/hero-section.tsx:9:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
+    at <unknown> (./src/components/hero-section.tsx:9:1)
+    at <unknown> (https://nextjs.org/docs/messages/module-not-found)
