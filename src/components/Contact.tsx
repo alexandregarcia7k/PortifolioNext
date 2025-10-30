@@ -5,7 +5,7 @@ import { Mail, Linkedin, Github } from "lucide-react";
 import { HoverButton } from "@/components/ui/hover-button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { showToast } from "@/components/ui/basic-toast";
+import { showToast } from "@/components/ui/toast";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);

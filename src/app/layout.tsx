@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
-import { ToastProvider } from "@/components/ui/basic-toast";
+import { ToastProvider } from "@/components/ui/toast";
+import { ToastInit } from "@/components/ui/toast-init";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -119,8 +120,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded">
           Pular para o conteúdo principal
         </a>
-        {children}
-        <ToastProvider />
+        <ToastProvider>
+          <ToastInit />
+          {children}
+        </ToastProvider>
       </body>
     </html>
   );
