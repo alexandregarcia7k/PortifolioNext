@@ -7,6 +7,7 @@ export default function NeuralBackground() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
+    let isPaused = false;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -41,6 +42,7 @@ export default function NeuralBackground() {
       lifespan: number;
       offsetX: number;
       side: 'left' | 'right';
+      gradient: CanvasGradient | null;
     }
 
     const waves: NeuralWave[] = [];
@@ -69,6 +71,7 @@ export default function NeuralBackground() {
         lifespan: 6 + Math.random() * 4,
         offsetX,
         side,
+        gradient: null,
       };
     };
 
@@ -99,9 +102,10 @@ export default function NeuralBackground() {
     let animationId: number;
     const startTime = Date.now();
     let time = 0;
+    let sinTime = 0, sinTimeSlow = 0;
 
     const animate = () => {
-      if (!isVisible) {
+      if (isPaused) {
         animationId = requestAnimationFrame(animate);
         return;
       }
@@ -114,13 +118,18 @@ export default function NeuralBackground() {
       if (elapsed < 3.5) {
         timeMultiplier = 6;
         impactMultiplier = 2.2;
-      } else {
-        const t = Math.min((elapsed - 3.5) / 3, 1);
+      } else if (elapsed < 6.5) {
+        const t = (elapsed - 3.5) / 3;
         timeMultiplier = 6 - (5 * (1 - Math.pow(1 - t, 4)));
         impactMultiplier = 2.2 - (1.2 * (1 - Math.pow(1 - t, 3)));
+      } else {
+        timeMultiplier = 1;
+        impactMultiplier = 1;
       }
 
       time += 0.016 * timeMultiplier;
+      sinTime = Math.sin(time * 0.5);
+      sinTimeSlow = Math.sin(time * 0.3);
 
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, width, height);
@@ -132,8 +141,7 @@ export default function NeuralBackground() {
         const lifeProgress = wave.age / wave.lifespan;
         
         if (lifeProgress >= 1) {
-          const newBeam = createBeam(wave.side);
-          Object.assign(wave, newBeam);
+          waves[waveIndex] = createBeam(wave.side);
           return;
         }
         
@@ -150,11 +158,15 @@ export default function NeuralBackground() {
         
         ctx.save();
 
+        const freqTime = time * wave.frequency;
+        const freqTime08 = freqTime * 0.8;
+        const freqTime03 = freqTime * 0.3;
+        
         wave.points.forEach((point, i) => {
-          const verticalMove = Math.sin(time * wave.frequency + point.phase + i * 0.5) * point.amplitude * impactMultiplier;
-          const horizontalMove = Math.cos(time * wave.frequency * 0.8 + i * 0.4) * 80 * impactMultiplier;
-          const secondaryMove = Math.sin(time * wave.frequency * 0.3 + i) * 40 * impactMultiplier;
-          const easedVertical = verticalMove * (0.7 + Math.sin(time * 0.5 + i) * 0.3);
+          const verticalMove = Math.sin(freqTime + point.phase + i * 0.5) * point.amplitude * impactMultiplier;
+          const horizontalMove = Math.cos(freqTime08 + i * 0.4) * 80 * impactMultiplier;
+          const secondaryMove = Math.sin(freqTime03 + i) * 40 * impactMultiplier;
+          const easedVertical = verticalMove * (0.7 + sinTime * 0.3);
           
           point.x = (width / 7) * i + wave.offsetX;
           point.y = wave.baseY + easedVertical + horizontalMove + secondaryMove;
@@ -187,25 +199,29 @@ export default function NeuralBackground() {
         
         ctx.closePath();
 
-        const beamPhase = Math.sin(time * 0.3 + waveIndex * 1.2) * 0.5 + 0.5;
+        const beamPhase = sinTimeSlow * 0.5 + 0.5;
         const baseOpacity = (0.2 + beamPhase * 0.3) * Math.min(impactMultiplier, 1.5) * lifetimeOpacity;
         
-        const lightBoost = 30 + (impactMultiplier - 1) * 20;
-        const lightR = Math.min(180, wave.color.r + lightBoost);
-        const lightG = Math.min(60, wave.color.g + lightBoost * 0.3);
-        const lightB = Math.min(200, wave.color.b + lightBoost);
-        
-        const darkR = Math.max(30, wave.color.r - 30);
-        const darkG = Math.max(10, wave.color.g - 20);
-        const darkB = Math.max(60, wave.color.b - 50);
-        
-        const gradient = ctx.createLinearGradient(0, wave.baseY - 50, 0, wave.baseY + beamHeight);
-        gradient.addColorStop(0, `rgba(${lightR}, ${lightG}, ${lightB}, ${baseOpacity})`);
-        gradient.addColorStop(0.5, `rgba(${wave.color.r}, ${wave.color.g}, ${wave.color.b}, ${baseOpacity * 0.7})`);
-        gradient.addColorStop(1, `rgba(${darkR}, ${darkG}, ${darkB}, 0)`);
+        if (!wave.gradient) {
+          const lightBoost = 30;
+          const lightR = Math.min(180, wave.color.r + lightBoost);
+          const lightG = Math.min(60, wave.color.g + lightBoost * 0.3);
+          const lightB = Math.min(200, wave.color.b + lightBoost);
+          
+          const darkR = Math.max(30, wave.color.r - 30);
+          const darkG = Math.max(10, wave.color.g - 20);
+          const darkB = Math.max(60, wave.color.b - 50);
+          
+          wave.gradient = ctx.createLinearGradient(0, wave.baseY - 50, 0, wave.baseY + beamHeight);
+          wave.gradient.addColorStop(0, `rgba(${lightR}, ${lightG}, ${lightB}, 1)`);
+          wave.gradient.addColorStop(0.5, `rgba(${wave.color.r}, ${wave.color.g}, ${wave.color.b}, 0.7)`);
+          wave.gradient.addColorStop(1, `rgba(${darkR}, ${darkG}, ${darkB}, 0)`);
+        }
 
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = wave.gradient;
+        ctx.globalAlpha = baseOpacity;
         ctx.fill();
+        ctx.globalAlpha = 1;
 
         ctx.restore();
       });
@@ -224,7 +240,7 @@ export default function NeuralBackground() {
     animate();
 
     const handleVisibilityChange = () => {
-      setIsVisible(!document.hidden);
+      isPaused = document.hidden;
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
@@ -233,7 +249,7 @@ export default function NeuralBackground() {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationId);
     };
-  }, [isVisible]);
+  }, []);
 
   return (
     <div className="absolute inset-0 -z-10 w-full h-full overflow-hidden bg-black" aria-hidden="true">
