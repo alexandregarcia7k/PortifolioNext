@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Linkedin, Github, Mail } from "lucide-react"
 import { smoothScrollTo } from '@/lib/smoothScroll'
-import { showToast } from "@/components/ui/basic-toast"
+import { showToast } from "@/components/ui/toast"
 import { useState } from 'react'
 
 function Footer() {
