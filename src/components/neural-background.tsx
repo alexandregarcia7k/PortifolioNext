@@ -2,17 +2,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 
-/**
- * Neural Background - Canvas 2D Optimized
- * 
- * Substituição do shader WebGL CPPN por Canvas 2D para melhor performance
- * - 2 feixes de luz principais (esquerda/direita)
- * - Fade in/out natural com ciclo de vida
- * - Aceleração inicial (6x) com desaceleração suave
- * - Roxo escuro discreto
- * - 60 FPS garantido
- */
-
 export default function NeuralBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isVisible, setIsVisible] = useState(true);
@@ -67,8 +56,8 @@ export default function NeuralBackground() {
         : -width * 0.15 + Math.random() * width * 0.1;
       
       return {
-        points: Array.from({ length: 12 }, (_, j) => ({
-          x: (width / 11) * j,
+        points: Array.from({ length: 6 }, (_, j) => ({
+          x: (width / 6) * j,
           y: 0,
           phase: Math.random() * Math.PI * 2,
           amplitude: 250 + Math.random() * 250,
@@ -91,26 +80,21 @@ export default function NeuralBackground() {
     rightBeam.age = Math.random() * rightBeam.lifespan;
     waves.push(rightBeam);
 
-    interface Particle {
-      x: number;
-      y: number;
-      size: number;
-      opacity: number;
-      twinkleSpeed: number;
-      twinklePhase: number;
-    }
+    // Cache de gradientes
+    const bgGradient = ctx.createRadialGradient(
+      width / 2, height / 3, 0,
+      width / 2, height / 3, Math.max(width, height) * 0.6
+    );
+    bgGradient.addColorStop(0, 'rgba(26, 0, 51, 0.3)');
+    bgGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-    const particles: Particle[] = [];
-    for (let i = 0; i < 30; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 1.2 + 0.3,
-        opacity: Math.random() * 0.3 + 0.1,
-        twinkleSpeed: 0.3 + Math.random() * 0.8,
-        twinklePhase: Math.random() * Math.PI * 2,
-      });
-    }
+    const vignetteGradient = ctx.createRadialGradient(
+      width / 2, height / 2, 0,
+      width / 2, height / 2, Math.max(width, height) * 0.7
+    );
+    vignetteGradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+    vignetteGradient.addColorStop(0.7, 'rgba(0, 0, 0, 0.2)');
+    vignetteGradient.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
 
     let animationId: number;
     const startTime = Date.now();
@@ -172,7 +156,7 @@ export default function NeuralBackground() {
           const secondaryMove = Math.sin(time * wave.frequency * 0.3 + i) * 40 * impactMultiplier;
           const easedVertical = verticalMove * (0.7 + Math.sin(time * 0.5 + i) * 0.3);
           
-          point.x = (width / 11) * i + wave.offsetX;
+          point.x = (width / 7) * i + wave.offsetX;
           point.y = wave.baseY + easedVertical + horizontalMove + secondaryMove;
         });
 
@@ -221,42 +205,17 @@ export default function NeuralBackground() {
         gradient.addColorStop(1, `rgba(${darkR}, ${darkG}, ${darkB}, 0)`);
 
         ctx.fillStyle = gradient;
-        ctx.filter = 'blur(60px)';
         ctx.fill();
-        ctx.filter = 'none';
 
         ctx.restore();
       });
 
-      const bgGradient = ctx.createRadialGradient(
-        width / 2, height / 3, 0,
-        width / 2, height / 3, Math.max(width, height) * 0.6
-      );
-      bgGradient.addColorStop(0, 'rgba(26, 0, 51, 0.3)');
-      bgGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, width, height);
 
       ctx.globalCompositeOperation = 'source-over';
 
-      particles.forEach(p => {
-        const twinkle = 0.5 + Math.sin(time * p.twinkleSpeed + p.twinklePhase) * 0.5;
-        const currentOpacity = p.opacity * twinkle;
-
-        ctx.fillStyle = `rgba(80, 50, 140, ${currentOpacity})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      const vignette = ctx.createRadialGradient(
-        width / 2, height / 2, 0,
-        width / 2, height / 2, Math.max(width, height) * 0.7
-      );
-      vignette.addColorStop(0, 'rgba(0, 0, 0, 0)');
-      vignette.addColorStop(0.7, 'rgba(0, 0, 0, 0.2)');
-      vignette.addColorStop(1, 'rgba(0, 0, 0, 0.5)');
-      ctx.fillStyle = vignette;
+      ctx.fillStyle = vignetteGradient;
       ctx.fillRect(0, 0, width, height);
 
       animationId = requestAnimationFrame(animate);
@@ -281,7 +240,10 @@ export default function NeuralBackground() {
       <canvas 
         ref={canvasRef} 
         className="absolute inset-0 w-full h-full"
-        style={{ imageRendering: 'auto' }}
+        style={{ 
+          imageRendering: 'auto',
+          filter: 'blur(22px)'
+        }}
       />
     </div>
   );
