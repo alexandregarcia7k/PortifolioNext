@@ -78,21 +78,21 @@ export default function HeroSection() {
                   initialOpacity={0}
                   delay={0}
                 >
-                  <p className="pl-1 font-light text-white/80 leading-none mb-1 text-[clamp(0.9rem,2.2vw,1.6rem)]">
+                  <p className="pl-1 font-light text-white/90 leading-none mb-1 text-[clamp(0.9rem,2.2vw,1.6rem)]">
                     Olá, sou Alexandre
                   </p>
                   <h1 id="hero-heading" className="sr-only">Alexandre Garcia - Desenvolvedor Full-Stack especializado em React, Next.js e TypeScript</h1>
                   <div
                     style={{ padding: 0, margin: 0 }}
                     className="font-bold leading-none mb-1 w-full text-[clamp(2.25rem,7vw,5rem)]" 
-                    aria-hidden="true"
+                  
                   >
                     DESENVOLVEDOR
                   </div>
                   <div
                     style={{ padding: 0, margin: 0 }}
                     className="font-bold leading-none mb-4 lg:mb-6 w-full text-[clamp(2.25rem,7vw,5rem)]"
-                    aria-hidden="true"
+                    
                   >
                     FULL-STACK
                   </div>
@@ -104,7 +104,7 @@ export default function HeroSection() {
                   initialOpacity={0}
                 >
                   <p className="mt-2 max-w-2xl text-pretty pl-1">
-                    <span className="text-[clamp(0.8rem,2vw,1.25rem)]">
+                    <span className="text-[clamp(0.8rem,2vw,1.25rem)] text-white/90">
                       Meu trabalho é desenvolver
                     </span>
                   </p>
@@ -117,7 +117,7 @@ export default function HeroSection() {
                         "Resultados impactantes.",
                       ]}
                       speed={60}
-                      className="text-white pl-1 font-mono font-light text-[clamp(0.85rem,2.1vw,1.35rem)]"
+                      className="text-white/90 pl-1 font-mono font-light text-[clamp(0.85rem,2.1vw,1.35rem)]"
                       waitTime={1500}
                       deleteSpeed={40}
                       cursorChar="|"
@@ -132,10 +132,12 @@ export default function HeroSection() {
                   delay={0}
                 >
                   <div className="pl-1 mt-12 flex flex-col items-center gap-2 sm:flex-row sm:justify-center lg:justify-start lg:items-start">
-                    <HoverButton className="px-6 py-3.5 sm:py-4 text-base rounded-sm">
-                      <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} aria-label="Entrar em contato com Alexandre Garcia">
-                        <span className="text-nowrap">Entrar em Contato</span>
-                      </a>
+                    <HoverButton 
+                      className="px-6 py-3.5 sm:py-4 text-base rounded-sm"
+                      onClick={() => smoothScrollTo('#contato')}
+                      aria-label="Entrar em contato com Alexandre Garcia"
+                    >
+                      <span className="text-nowrap">Entrar em Contato</span>
                     </HoverButton>
                   </div>
                 </FadeContent>
@@ -178,7 +180,7 @@ export default function HeroSection() {
                           className="custom-class"
                         />
                       </h2>
-                      <p className="text-xs sm:text-sm font-light text-white/70">
+                      <p className="text-xs sm:text-sm font-light text-white/90">
                         Desenvolvedor Full-Stack
                       </p>
                     </div>
@@ -187,26 +189,26 @@ export default function HeroSection() {
                         href="https://www.linkedin.com/in/alexandregarcia7k"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                        className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary rounded p-2 min-w-11 min-h-11 flex items-center justify-center"
                         aria-label="Visitar perfil do LinkedIn de Alexandre Garcia"
                       >
-                        <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+                        <Linkedin className="w-8 h-8" aria-hidden="true" />
                       </a>
                       <a
                         href="https://github.com/alexandregarcia7k"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                        className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary rounded p-2 min-w-11 min-h-11 flex items-center justify-center"
                         aria-label="Visitar perfil do GitHub de Alexandre Garcia"
                       >
-                        <Github className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+                        <Github className="w-8 h-8" aria-hidden="true" />
                       </a>
                       <a
                         href="mailto:alexandregarciassj@outlook.com"
-                        className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary rounded"
+                        className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary rounded p-2 min-w-11 min-h-11 flex items-center justify-center"
                         aria-label="Enviar email para alexandregarciassj@outlook.com"
                       >
-                        <Mail className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+                        <Mail className="w-8 h-8" aria-hidden="true" />
                       </a>
                     </nav>
                   </div>
@@ -214,7 +216,7 @@ export default function HeroSection() {
               </FadeContent>
             </div>
 
-            <div className="mx-auto max-w-[70rem] 2xl:max-w-[80rem] px-4 sm:px-6">
+            <div className="mx-auto max-w-280 2xl:max-w-7xl px-4 sm:px-6">
             <FadeContent
                 blur={true}
                 duration={1000}
@@ -256,7 +258,7 @@ export default function HeroSection() {
               </FadeContent>
             </div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-black pointer-events-none z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-b from-transparent to-black pointer-events-none z-10" />
         </section>
       </main>
     </>

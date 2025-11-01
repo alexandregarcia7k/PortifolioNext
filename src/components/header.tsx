@@ -10,6 +10,7 @@ const menuItems = [
     { name: 'Sobre', href: '#sobre', onClick: () => smoothScrollTo('#sobre') },
     { name: 'Projetos', href: '#projetos', onClick: () => smoothScrollTo('#projetos') },
     { name: 'Serviços', href: '#servicos', onClick: () => smoothScrollTo('#servicos') },
+    { name: 'Contato', href: '#contato', onClick: () => smoothScrollTo('#contato') },
 ]
 
 export const HeroHeader = () => {
@@ -67,9 +68,9 @@ export const HeroHeader = () => {
                                 aria-label={menuState ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
                                 aria-expanded={menuState}
                                 aria-controls="mobile-menu"
-                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                <Menu aria-hidden="true" className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                <X aria-hidden="true" className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden min-w-11 min-h-11">
+                                <Menu aria-hidden="true" className="data-[state=active]:rotate-180 data-[state=active]:scale-0 data-[state=active]:opacity-0 m-auto size-6 duration-200" />
+                                <X aria-hidden="true" className="data-[state=active]:rotate-0 data-[state=active]:scale-100 data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
                             </button>
                         </div>
 
@@ -112,7 +113,8 @@ export const HeroHeader = () => {
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 <HoverButton
                                 className="rounded-sm"
-                                onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); setMenuState(false); }}
+                                onClick={() => { smoothScrollTo('#contato'); setMenuState(false); }}
+                                aria-label="Ir para seção de contato"
                                 >
                                     <span>Contato</span>
                                 </HoverButton>

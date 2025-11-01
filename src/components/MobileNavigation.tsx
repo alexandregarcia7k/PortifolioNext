@@ -59,6 +59,7 @@ const Customized = () => {
     <nav 
       role="navigation" 
       aria-label="Navegação principal mobile"
+      aria-hidden={!isVisible}
       className={`transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <LimelightNav 

@@ -179,7 +179,12 @@ export default function Contact() {
               aria-hidden="true"
             />
 
-            <HoverButton type="submit" className="w-full rounded-sm" disabled={isSubmitting}>
+            <HoverButton 
+              type="submit" 
+              className="w-full rounded-sm min-h-11" 
+              disabled={isSubmitting}
+              aria-label={isSubmitting ? 'Enviando mensagem' : 'Enviar mensagem de contato'}
+            >
               <span className="w-full">{isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}</span>
             </HoverButton>
           </form>

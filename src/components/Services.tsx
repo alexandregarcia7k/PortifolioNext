@@ -54,10 +54,10 @@ const Services = () => {
                 carouselApi?.scrollPrev();
               }}
               disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto"
+              className="min-w-11 min-h-11"
               aria-label="Ver serviço anterior"
             >
-              <ArrowLeft className="size-5" aria-hidden="true" />
+              <ArrowLeft className="size-6" aria-hidden="true" />
             </Button>
             <Button
               size="icon"
@@ -66,10 +66,10 @@ const Services = () => {
                 carouselApi?.scrollNext();
               }}
               disabled={!canScrollNext}
-              className="disabled:pointer-events-auto"
+              className="min-w-11 min-h-11"
               aria-label="Ver próximo serviço"
             >
-              <ArrowRight className="size-5" aria-hidden="true" />
+              <ArrowRight className="size-6" aria-hidden="true" />
             </Button>
           </nav>
         </header>

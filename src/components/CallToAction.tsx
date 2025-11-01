@@ -58,15 +58,14 @@ export default function CallToAction() {
               </div>
             </FadeContent>
             
-            <p className="text-center text-white/80 text-[clamp(1rem,2vw,1.25rem)] max-w-2xl">
-              Vamos transformar suas ideias em realidade digital. Entre em contato e dê o primeiro passo para criar uma presença online marcante que impulsiona seus resultados e conecta você ao seu público.
-            </p>
 
-            <HoverButton className="px-6 py-3.5 sm:py-4 text-base rounded-sm">
-              <a href="#contato" onClick={(e) => { e.preventDefault(); smoothScrollTo('#contato'); }} className="flex items-center gap-2" aria-label="Entrar em contato para iniciar seu projeto">
-                <span>Entrar em Contato</span>
-                <ArrowRight className="w-5 h-5" aria-hidden="true" />
-              </a>
+            <HoverButton 
+              className="px-6 py-3.5 sm:py-4 text-base rounded-sm flex items-center gap-2"
+              onClick={() => smoothScrollTo('#contato')}
+              aria-label="Entrar em contato para iniciar seu projeto"
+            >
+              <span>Entrar em Contato</span>
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </HoverButton>
           </div>
         )}

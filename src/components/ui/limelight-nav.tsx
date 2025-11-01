@@ -86,7 +86,7 @@ export const LimelightNav = ({
             key={id}
             ref={el => { navItemRefs.current[index] = el; }}
             href={href || '#'}
-            className={`relative z-20 flex h-full cursor-pointer items-center justify-center p-5 ${iconContainerClassName}`}
+            className={`relative z-20 flex h-full cursor-pointer items-center justify-center p-5 min-w-11 min-h-11 ${iconContainerClassName}`}
             onClick={(e) => {
               e.preventDefault();
               handleItemClick(index, onClick);
@@ -95,7 +95,7 @@ export const LimelightNav = ({
           >
             {cloneElement(icon as React.ReactElement<{ className?: string }>, {
               className: `w-6 h-6 transition-opacity duration-100 ease-in-out ${
-                activeIndex === index ? 'opacity-100' : 'opacity-40'
+                activeIndex === index ? 'opacity-100' : 'opacity-60'
               } ${(icon as React.ReactElement<{ className?: string }>).props.className || ''} ${iconClassName || ''}`,
             })}
           </a>
