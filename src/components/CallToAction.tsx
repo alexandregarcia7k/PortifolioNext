@@ -33,14 +33,14 @@ export default function CallToAction() {
   }, [isVisible]);
 
   return (
-    <section id="call-to-action" className="relative" ref={sectionRef} aria-labelledby="cta-heading">
+    <section id="call-to-action" className="relative" ref={sectionRef}>
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <SphereHero />
       </div>
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         {isVisible && (
           <div className="flex flex-col items-center gap-8 max-w-4xl px-6">
-            <h2 id="cta-heading" className="sr-only">Chamada para ação - Inicie seu projeto</h2>
+
             <FadeContent
               blur={true}
               duration={1000}
