@@ -72,56 +72,56 @@ export function CodeBlockComponent() {
             <code className="font-mono leading-relaxed">
               <span className="text-[#d580ff]">export</span>
               <span className="text-[#d580ff]"> const</span>
-              <span className="text-[#ff4d6d]"> alexandre</span>
+              <span className="text-[#ff7a99]"> alexandre</span>
               <span className="text-[#d4d4d4]"> = {"{"}</span>
               {"\n  "}
-              <span className="text-[#ff4d6d]">name</span>
+              <span className="text-[#ff7a99]">name</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#a5e075]">
                 &quot;Alexandre Garcia&quot;
               </span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n  "}
-              <span className="text-[#ff4d6d]">age</span>
+              <span className="text-[#ff7a99]">age</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#ffb86c]">22</span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n  "}
-              <span className="text-[#ff4d6d]">role</span>
+              <span className="text-[#ff7a99]">role</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#a5e075]">
                 &quot;Desenvolvedor Full-Stack&quot;
               </span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n  "}
-              <span className="text-[#ff4d6d]">experience</span>
+              <span className="text-[#ff7a99]">experience</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#a5e075]">&quot;1 ano&quot;</span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n  "}
-              <span className="text-[#ff4d6d]">focus</span>
+              <span className="text-[#ff7a99]">focus</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#a5e075]">&quot;Front-End&quot;</span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n  \n  "}
-              <span className="text-[#ff4d6d]">contact</span>
+              <span className="text-[#ff7a99]">contact</span>
               <span className="text-[#d4d4d4]">: {"{"}</span>
               {"\n    "}
-              <span className="text-[#ff4d6d]">email</span>
+              <span className="text-[#ff7a99]">email</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#a5e075]">
                 &quot;alexandregarciassj@outlook.com&quot;
               </span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n    "}
-              <span className="text-[#ff4d6d]">linkedin</span>
+              <span className="text-[#ff7a99]">linkedin</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#a5e075]">
                 &quot;linkedin.com/in/alexandregarcia7k&quot;
               </span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n    "}
-              <span className="text-[#ff4d6d]">github</span>
+              <span className="text-[#ff7a99]">github</span>
               <span className="text-[#d4d4d4]">: </span>
               <span className="text-[#a5e075]">
                 &quot;github.com/alexandregarcia7k&quot;
@@ -130,10 +130,10 @@ export function CodeBlockComponent() {
               <span className="text-[#d4d4d4]">{"}"}</span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n  \n  "}
-              <span className="text-[#ff4d6d]">skills</span>
+              <span className="text-[#ff7a99]">skills</span>
               <span className="text-[#d4d4d4]">: {"{"}</span>
               {"\n    "}
-              <span className="text-[#ff4d6d]">frontend</span>
+              <span className="text-[#ff7a99]">frontend</span>
               <span className="text-[#d4d4d4]">: [</span>
               <span className="text-[#a5e075]">&quot;React&quot;</span>
               <span className="text-[#d4d4d4]">, </span>
@@ -156,7 +156,7 @@ export function CodeBlockComponent() {
               <span className="text-[#a5e075]">&quot;Sass&quot;</span>
               <span className="text-[#d4d4d4]">],</span>
               {"\n    "}
-              <span className="text-[#ff4d6d]">backend</span>
+              <span className="text-[#ff7a99]">backend</span>
               <span className="text-[#d4d4d4]">: [</span>
               <span className="text-[#a5e075]">&quot;Node.js&quot;</span>
               <span className="text-[#d4d4d4]">, </span>
@@ -168,7 +168,7 @@ export function CodeBlockComponent() {
               <span className="text-[#a5e075]">&quot;PostgreSQL&quot;</span>
               <span className="text-[#d4d4d4]">],</span>
               {"\n    "}
-              <span className="text-[#ff4d6d]">tools</span>
+              <span className="text-[#ff7a99]">tools</span>
               <span className="text-[#d4d4d4]">: [</span>
               <span className="text-[#a5e075]">&quot;Git&quot;</span>
               <span className="text-[#d4d4d4]">, </span>
@@ -180,7 +180,7 @@ export function CodeBlockComponent() {
               <span className="text-[#d4d4d4]">{"}"}</span>
               <span className="text-[#d4d4d4]">,</span>
               {"\n  "}
-              <span className="text-[#ff4d6d]">goal</span>
+              <span className="text-[#ff7a99]">goal</span>
               <span className="text-[#d4d4d4]">: [</span>
               {"\n    "}
               <span className="text-[#a5e075]">
