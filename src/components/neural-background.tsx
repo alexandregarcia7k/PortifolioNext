@@ -115,13 +115,13 @@ export default function NeuralBackground() {
       let timeMultiplier: number;
       let impactMultiplier: number;
       
-      if (elapsed < 3.5) {
-        timeMultiplier = 6;
-        impactMultiplier = 2.2;
-      } else if (elapsed < 6.5) {
-        const t = (elapsed - 3.5) / 3;
-        timeMultiplier = 6 - (5 * (1 - Math.pow(1 - t, 4)));
-        impactMultiplier = 2.2 - (1.2 * (1 - Math.pow(1 - t, 3)));
+      if (elapsed < 4) {
+        timeMultiplier = 2;
+        impactMultiplier = 1.3;
+      } else if (elapsed < 6) {
+        const t = (elapsed - 4) / 2;
+        timeMultiplier = 2 - (1 * (1 - Math.pow(1 - t, 4)));
+        impactMultiplier = 1.3 - (0.3 * (1 - Math.pow(1 - t, 3)));
       } else {
         timeMultiplier = 1;
         impactMultiplier = 1;
