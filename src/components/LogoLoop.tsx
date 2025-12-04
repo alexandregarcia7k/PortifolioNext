@@ -40,7 +40,9 @@ export interface LogoLoopProps {
 const ANIMATION_CONFIG = {
   SMOOTH_TAU: 0.25,
   MIN_COPIES: 2,
-  COPY_HEADROOM: 2
+  COPY_HEADROOM: 2,
+  DEBOUNCE_DELAY: 300,
+  THROTTLE_FPS: 30
 } as const;
 
 const toCssLength = (value?: number | string): string | undefined =>
@@ -48,73 +50,7 @@ const toCssLength = (value?: number | string): string | undefined =>
 
 const cx = (...parts: Array<string | false | null | undefined>) => parts.filter(Boolean).join(' ');
 
-const useResizeObserver = (
-  callback: () => void,
-  elements: Array<React.RefObject<Element | null>>,
-  dependencies: React.DependencyList
-) => {
-  useEffect(() => {
-    if (!window.ResizeObserver) {
-      const handleResize = () => callback();
-      window.addEventListener('resize', handleResize);
-      callback();
-      return () => window.removeEventListener('resize', handleResize);
-    }
 
-    const observers = elements.map(ref => {
-      if (!ref.current) return null;
-      const observer = new ResizeObserver(callback);
-      observer.observe(ref.current);
-      return observer;
-    });
-
-    callback();
-
-    return () => {
-      observers.forEach(observer => observer?.disconnect());
-    };
-  }, dependencies);
-};
-
-const useImageLoader = (
-  seqRef: React.RefObject<HTMLUListElement | null>,
-  onLoad: () => void,
-  dependencies: React.DependencyList
-) => {
-  useEffect(() => {
-    const images = seqRef.current?.querySelectorAll('img') ?? [];
-
-    if (images.length === 0) {
-      onLoad();
-      return;
-    }
-
-    let remainingImages = images.length;
-    const handleImageLoad = () => {
-      remainingImages -= 1;
-      if (remainingImages === 0) {
-        onLoad();
-      }
-    };
-
-    images.forEach(img => {
-      const htmlImg = img as HTMLImageElement;
-      if (htmlImg.complete) {
-        handleImageLoad();
-      } else {
-        htmlImg.addEventListener('load', handleImageLoad, { once: true });
-        htmlImg.addEventListener('error', handleImageLoad, { once: true });
-      }
-    });
-
-    return () => {
-      images.forEach(img => {
-        img.removeEventListener('load', handleImageLoad);
-        img.removeEventListener('error', handleImageLoad);
-      });
-    };
-  }, dependencies);
-};
 
 const useAnimationLoop = (
   trackRef: React.RefObject<HTMLDivElement | null>,
@@ -129,33 +65,40 @@ const useAnimationLoop = (
   const offsetRef = useRef(0);
   const velocityRef = useRef(0);
   const frameCountRef = useRef(0);
+  const throttleIntervalRef = useRef(1000 / ANIMATION_CONFIG.THROTTLE_FPS);
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
+    if (!track || seqWidth <= 0) return;
 
     const prefersReduced =
       typeof window !== 'undefined' &&
       window.matchMedia &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (seqWidth > 0) {
-      offsetRef.current = ((offsetRef.current % seqWidth) + seqWidth) % seqWidth;
-      track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
-    }
+    // Inicializar posição
+    offsetRef.current = ((offsetRef.current % seqWidth) + seqWidth) % seqWidth;
+    track.style.transform = `translate3d(${-offsetRef.current}px, 0, 0)`;
 
     if (prefersReduced) {
       track.style.transform = 'translate3d(0, 0, 0)';
-      return () => {
-        lastTimestampRef.current = null;
-      };
+      return;
     }
 
     const animate = (timestamp: number) => {
-      // Pausa animação se fora do viewport
+      // Parar completamente se fora do viewport
       if (!isInViewport) {
-        rafRef.current = requestAnimationFrame(animate);
+        rafRef.current = null;
         return;
+      }
+
+      // Throttling: só executa a cada X ms
+      if (lastTimestampRef.current !== null) {
+        const elapsed = timestamp - lastTimestampRef.current;
+        if (elapsed < throttleIntervalRef.current) {
+          rafRef.current = requestAnimationFrame(animate);
+          return;
+        }
       }
 
       if (lastTimestampRef.current === null) {
@@ -166,11 +109,11 @@ const useAnimationLoop = (
       lastTimestampRef.current = timestamp;
 
       const target = pauseOnHover && isHovered ? 0 : targetVelocity;
-
       const easingFactor = 1 - Math.exp(-deltaTime / ANIMATION_CONFIG.SMOOTH_TAU);
       velocityRef.current += (target - velocityRef.current) * easingFactor;
 
-      if (seqWidth > 0) {
+      // Só atualizar DOM se houve mudança significativa
+      if (Math.abs(velocityRef.current) > 0.1) {
         let nextOffset = offsetRef.current + velocityRef.current * deltaTime;
         nextOffset = ((nextOffset % seqWidth) + seqWidth) % seqWidth;
         offsetRef.current = nextOffset;
@@ -182,7 +125,9 @@ const useAnimationLoop = (
       rafRef.current = requestAnimationFrame(animate);
     };
 
-    rafRef.current = requestAnimationFrame(animate);
+    if (isInViewport) {
+      rafRef.current = requestAnimationFrame(animate);
+    }
 
     return () => {
       if (rafRef.current !== null) {
@@ -221,6 +166,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     const [isHovered, setIsHovered] = useState<boolean>(false);
     const [isInViewport, setIsInViewport] = useState<boolean>(false);
     
+
+    
     
     const dimensionsCache = useRef({ containerWidth: 0, sequenceWidth: 0 });
 
@@ -232,29 +179,52 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     }, [speed, direction]);
 
     const updateDimensions = useCallback(() => {
-      
       const containerWidth = containerRef.current?.clientWidth ?? 0;
       const sequenceWidth = seqRef.current?.getBoundingClientRect?.()?.width ?? 0;
       
-      // Só atualiza se mudou significativamente (>5px)
-      const widthChanged = Math.abs(dimensionsCache.current.sequenceWidth - sequenceWidth) > 5;
-      const containerChanged = Math.abs(dimensionsCache.current.containerWidth - containerWidth) > 5;
+      // Threshold maior para evitar updates desnecessários
+      const widthChanged = Math.abs(dimensionsCache.current.sequenceWidth - sequenceWidth) > 20;
+      const containerChanged = Math.abs(dimensionsCache.current.containerWidth - containerWidth) > 20;
       
       if (sequenceWidth > 0 && (widthChanged || containerChanged)) {
         dimensionsCache.current = { containerWidth, sequenceWidth };
-        setSeqWidth(Math.ceil(sequenceWidth));
+        
+        // Batch state updates
+        const newSeqWidth = Math.ceil(sequenceWidth);
         const copiesNeeded = Math.ceil(containerWidth / sequenceWidth) + ANIMATION_CONFIG.COPY_HEADROOM;
-        setCopyCount(Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded));
+        const newCopyCount = Math.max(ANIMATION_CONFIG.MIN_COPIES, copiesNeeded);
+        
+        setSeqWidth(prev => prev !== newSeqWidth ? newSeqWidth : prev);
+        setCopyCount(prev => prev !== newCopyCount ? newCopyCount : prev);
       }
     }, []);
 
-    useResizeObserver(updateDimensions, [containerRef, seqRef], [logos, gap, logoHeight]);
+    // Executar updateDimensions apenas uma vez após mount e quando logos mudam
+    useEffect(() => {
+      const timer = setTimeout(updateDimensions, 100);
+      return () => clearTimeout(timer);
+    }, [logos.length, updateDimensions]);
 
-    useImageLoader(seqRef, updateDimensions, [logos, gap, logoHeight]);
+    // ResizeObserver simples sem dependências circulares
+    useEffect(() => {
+      if (!window.ResizeObserver || !containerRef.current) return;
+      
+      let timeoutId: NodeJS.Timeout;
+      const observer = new ResizeObserver(() => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(updateDimensions, 100);
+      });
+      
+      observer.observe(containerRef.current);
+      return () => {
+        observer.disconnect();
+        clearTimeout(timeoutId);
+      };
+    }, [updateDimensions]);
 
     // Detecta quando está no viewport com rootMargin para iniciar antes
     useEffect(() => {
-      const element = containerRef.current;
+        const element = containerRef.current;
       if (!element) return;
 
       const observer = new IntersectionObserver(
@@ -385,8 +355,10 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     );
 
     const logoLists = useMemo(
-      () =>
-        Array.from({ length: copyCount }, (_, copyIndex) => (
+      () => {
+        if (copyCount < ANIMATION_CONFIG.MIN_COPIES) return [];
+        
+        return Array.from({ length: copyCount }, (_, copyIndex) => (
           <ul
             className="flex items-center"
             key={`copy-${copyIndex}`}
@@ -396,7 +368,8 @@ export const LogoLoop = React.memo<LogoLoopProps>(
           >
             {logos.map((item, itemIndex) => renderLogoItem(item, `${copyIndex}-${itemIndex}`))}
           </ul>
-        )),
+        ));
+      },
       [copyCount, logos, renderLogoItem]
     );
 

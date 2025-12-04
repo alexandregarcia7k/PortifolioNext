@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, { useMemo } from "react";
 import { smoothScrollTo } from '@/lib/smoothScroll';
 import TrueFocus from './TrueFocus';
 import Image from "next/image";
@@ -13,7 +13,7 @@ import { Typewriter } from "./ui/typewriter";
 import ShinyText from "./ShinyText";
 import FadeContent from "./FadeContent";
 import { HoverButton } from "@/components/ui/hover-button";
-import LogoLoop from './LogoLoop';
+import LogoLoopClean from './LogoLoopClean';
 import { 
   SiReact, 
   SiNextdotjs, 
@@ -34,8 +34,9 @@ import {
   SiNodedotjs 
 } from 'react-icons/si';
 
+export default function HeroSection() {
 
-const techLogos = [
+  const techLogos = useMemo(() => [
     { node: <SiReact className="hover:text-[#61DAFB] transition-all duration-150 ease-out" />, title: "React" },
     { node: <SiNextdotjs className="hover:text-white transition-all duration-150 ease-out" />, title: "Next.js" },
     { node: <SiTypescript className="hover:text-[#3178C6] transition-all duration-150 ease-out" />, title: "TypeScript" },
@@ -53,9 +54,8 @@ const techLogos = [
     { node: <SiDocker className="hover:text-[#2496ED] transition-all duration-150 ease-out" />, title: "Docker" },
     { node: <SiPrisma className="hover:text-[#2D3748] transition-all duration-150 ease-out" />, title: "Prisma" },
     { node: <SiNodedotjs className="hover:text-[#339933] transition-all duration-150 ease-out" />, title: "Node.js" },
-];
+  ], []);
 
-export default function HeroSection() {
   return (
     <>
       <div className="hidden md:block">
@@ -242,7 +242,7 @@ export default function HeroSection() {
                 initialOpacity={0}
               >
               <div className="pt-8">
-                <LogoLoop
+                <LogoLoopClean
                   logos={techLogos}
                   speed={50}
                   direction="left"
