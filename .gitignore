@@ -5,7 +5,6 @@
 /.pnp
 .pnp.*
 .yarn/*
-.github/
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
@@ -31,9 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-!.env.example
+# Environment variables (ALL blocked - no exceptions)
+.env
+.env.*
 
 # vercel
 .vercel
@@ -41,6 +40,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Security documentation (internal only)
+docs/SECURITY_TODO.md
+docs/*_DIAGNOSTICO.md
+*_DIAGNOSTICO.md
 
 # markdown files (except README)
 *.md
