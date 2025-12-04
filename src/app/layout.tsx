@@ -12,6 +12,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://alexandregarcia.me'),
   title: "Alexandre Garcia | Desenvolvedor Full-Stack | React, Next.js & TypeScript",
   description: "Desenvolvedor Full-Stack especializado em React, Next.js, TypeScript e Node.js. Criando experiências digitais marcantes, interfaces modernas e soluções escaláveis para web.",
   keywords: [
@@ -82,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preload" href="/fotoportifolio.webp" as="image" fetchPriority="high" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="theme-color" content="#000000" />
         <script

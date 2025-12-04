@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export default function NeuralBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isVisible, setIsVisible] = useState(true);
+
 
   useEffect(() => {
     let isPaused = false;

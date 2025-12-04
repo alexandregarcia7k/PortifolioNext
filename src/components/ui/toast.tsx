@@ -54,7 +54,6 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               key={toast.id}
               toast={toast}
               onClose={() => removeToast(toast.id)}
-              index={index}
             />
           ))}
         </div>,
@@ -64,7 +63,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-function ToastItem({ toast, onClose, index }: { toast: Toast; onClose: () => void; index: number }) {
+function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
   const [isEntering, setIsEntering] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
 

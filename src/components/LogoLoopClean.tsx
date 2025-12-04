@@ -52,7 +52,7 @@ export const LogoLoopClean: React.FC<LogoLoopProps> = ({
     const track = container.querySelector('[data-track]') as HTMLElement;
     if (!track) return;
 
-    let startTime = Date.now();
+    const startTime = Date.now();
     // Ajustar velocidade: quanto maior o speed, mais rápido (mas com limite mínimo)
     const duration = Math.max(8000, (1000 / Math.abs(speed)) * 1000); // Mínimo 8 segundos por ciclo
     const isReverse = direction === 'right';

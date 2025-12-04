@@ -64,7 +64,7 @@ const useAnimationLoop = (
   const lastTimestampRef = useRef<number | null>(null);
   const offsetRef = useRef(0);
   const velocityRef = useRef(0);
-  const frameCountRef = useRef(0);
+
   const throttleIntervalRef = useRef(1000 / ANIMATION_CONFIG.THROTTLE_FPS);
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const useAnimationLoop = (
       }
       lastTimestampRef.current = null;
     };
-  }, [targetVelocity, seqWidth, isHovered, pauseOnHover, isInViewport]);
+  }, [targetVelocity, seqWidth, isHovered, pauseOnHover, isInViewport, trackRef]);
 };
 
 export const LogoLoop = React.memo<LogoLoopProps>(
@@ -148,7 +148,7 @@ export const LogoLoop = React.memo<LogoLoopProps>(
     logoHeight = 28,
     gap = 32,
     pauseOnHover = true,
-    fadeOut = false,
+  
     fadeOutColor,
     scaleOnHover = false,
     ariaLabel = 'Stack de tecnologias',
